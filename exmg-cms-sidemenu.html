@@ -14,6 +14,7 @@
         color: #747574;
         height: 100%;
         overflow: scroll;
+        position: relative;
       }
 
       .nav-heading {
@@ -211,9 +212,23 @@
       static get is() { return 'exmg-cms-sidemenu'; }
       static get properties() {
         return {
+          collapsedWidth: {
+            type: Number,
+            value: 68,
+          },
           menu: {
             type: Array,
-          }
+          },
+          collapsed: {
+            type: Boolean,
+            reflectToAttribute: true,
+            value: false
+          },
+          drawerWidth: {
+            type: String,
+            notify: true,
+            computed: '_computeWidth(collapsed)'
+          },
         };
       }
       _hasItems(item) {
@@ -224,6 +239,15 @@
       }
       _computeBadgeCount(item) {
         return item.badgeCount > 99 ? '...' : item.badgeCount;
+      }
+      _handleCollapse() {
+        this.set('collapsed', !this.collapsed);
+      }
+      /*
+      * Calculate the
+      */
+      _computeWidth(collapsed) {
+        return collapsed ? '100%' : '100%';
       }
     }
 

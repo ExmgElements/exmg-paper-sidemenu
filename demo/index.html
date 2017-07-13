@@ -36,22 +36,25 @@
         <template>
           <style>
            :host{
-             display:block;
-             max-width:256px;
-           }
-           .menu-container{
+             display: inline-block;
              height: 100%;
              overflow: scroll;
              background-color: white;
            }
+           exmg-cms-sidemenu {
+             width: 256px;
+           }
+           exmg-cms-sidemenu[collapsed] {
+             width: 68px;
+           }
           </style>
 
-          <div class="menu-container">
-            <exmg-cms-sidemenu menu="[[menu]]"></exmg-cms-sidemenu>
-          </div>
+          <!-- Menu  -->
+          <exmg-cms-sidemenu menu="[[menu]]"></exmg-cms-sidemenu>
 
           <!-- Load menu from json file  -->
           <iron-ajax url="data/menu.json" last-response="{{menu}}" auto></iron-ajax>
+
         </template>
         <script>
         window.addEventListener('WebComponentsReady', function() {
