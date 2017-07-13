@@ -221,13 +221,9 @@
           },
           collapsed: {
             type: Boolean,
+            notify: true,
             reflectToAttribute: true,
             value: false
-          },
-          drawerWidth: {
-            type: String,
-            notify: true,
-            computed: '_computeWidth(collapsed)'
           },
         };
       }
@@ -243,12 +239,7 @@
       _handleCollapse() {
         this.set('collapsed', !this.collapsed);
       }
-      /*
-      * Calculate the
-      */
-      _computeWidth(collapsed) {
-        return collapsed ? '100%' : '100%';
-      }
+
     }
 
     window.customElements.define(ExmgCmsSidemenu.is, ExmgCmsSidemenu);
