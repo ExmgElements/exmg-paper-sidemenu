@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="exmg-cms-sidemenu">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `exmg-cms-sidemenu`
+     * Collapsible side menu for CMS projects
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class ExmgCmsSidemenu extends Polymer.Element {
+      static get is() { return 'exmg-cms-sidemenu'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'exmg-cms-sidemenu'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(ExmgCmsSidemenu.is, ExmgCmsSidemenu);
+  </script>
+</dom-module>
