@@ -1,13 +1,201 @@
 <link rel="import" href="../polymer/polymer-element.html">
 
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-listbox/paper-listbox.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+
 <dom-module id="exmg-cms-sidemenu">
   <template>
     <style>
       :host {
         display: block;
+        color: #747574;
+        height: 100%;
+        overflow: scroll;
       }
+
+      .nav-heading {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-flex-shrink: 0;
+        flex-shrink: 0;
+        padding: 0 24px;
+        overflow: hidden;
+        cursor: default;
+        -webkit-user-select: none;
+        color: rgba(0,0,0,0.38);
+        font-size: 12px;
+        line-height: 24px;
+        letter-spacing: .5px;
+        text-transform: uppercase;
+        height: 32px;
+        -webkit-transition: height .3s ease,opacity .3s ease .15s;
+        transition: height .3s ease,opacity .3s
+      }
+
+      paper-item {
+        margin: 0;
+        height: 32px;
+        min-width: 0;
+        overflow: visible;
+        width: 100%;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        color: rgba(0,0,0,0.54);
+        font-size: 14px;
+        font-weight: 500;
+        color: #747574;
+        letter-spacing: 0;
+        line-height: 20px;
+        text-align: start;
+        text-decoration: none;
+        text-transform: none;
+        cursor: pointer;
+      }
+      paper-item {
+        --paper-item-selected: {
+          color: #0099E9;
+        }
+      }
+
+      paper-item {
+        --paper-item: {
+          min-height: 32px;
+          padding: 0px 24px;
+          box-sizing: border-box;
+        }
+      }
+
+      paper-item > iron-icon {
+        padding-right: 16px;
+      }
+
+      .menu-header paper-item {
+        box-sizing: border-box;
+        padding: 0px 24px;
+      }
+
+      .menu-header {
+        border-bottom: 1px solid #ddd;
+        height: 56px;
+        margin-bottom: 12px;
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+      }
+      .menu-header paper-listbox {
+        border-right: 1px solid #ddd;
+        @apply(--layout-flex);
+      }
+      .menu-header paper-icon-button {
+        display: block !important;
+        margin: 0 4px;
+        color: #747574;
+      }
+
+      .menu-footer {
+        position:absolute;
+        bottom: 0px;
+        width: 100%;
+      }
+      .menu-footer paper-icon-button {
+        transition: transform .1s linear;
+        transform: rotate(0deg);
+        @apply(--layout-end-justified);
+      }
+
+      .menu-footer {
+        border-top: 1px solid #ddd;
+        background: #F9FAF9;
+        height: 44px;
+        @apply(--layout-horizontal);
+        @apply(--layout-end-justified);
+        @apply(--layout-center);
+      }
+      .menu-footer paper-icon-button{
+        margin: 0 4px;
+        color: #747574;
+      }
+
+      :host([collapsed]) .menu-footer {
+        @apply(--layout-horizontal);
+        @apply(--layout-center-justified);
+        @apply(--layout-center);
+      }
+
+      :host([collapsed]) paper-item > iron-icon { padding: 0; }
+      :host([collapsed]) paper-item > span { display: none; }
+      :host([collapsed]) .nav-heading { display: none; }
+      :host([collapsed]) .menu-header paper-menu{
+        border-bottom: 0;
+        padding: 5px 0;
+      }
+      :host([collapsed]) paper-menu {
+        border-bottom: 1px solid #ddd;
+        padding: 5px 0;
+      }
+
+      :host([collapsed]) .menu-header { border-bottom: 0px; }
+      :host([collapsed]) .menu-header {
+        @apply(--layout-vertical);
+      }
+
+      :host([collapsed]) .menu-header paper-menu { border-right: 0px; }
+
+      .menu paper-menu.menu-top { display: none; }
+
+      :host([collapsed]) .menu paper-menu.menu-top {
+        padding-top: 8px;
+        display: block;
+      }
+      :host([collapsed]) .menu-header { display: none; }
+      :host([collapsed]) paper-item { height: 36px; }
+      :host([collapsed]) .menu-footer paper-icon-button { transform: rotate(180deg); }
+
     </style>
-    <h2>Hello [[prop1]]!</h2>
+
+    <!-- Sidemenu Header -->
+    <div class="menu-header">
+      <paper-listbox>
+        <paper-item on-tap="_openDashboard">
+          <iron-icon icon="dev-icons:dashboard"></iron-icon>
+          <span>Dashboard</span>
+        </paper-item>
+      </paper-listbox>
+      <paper-icon-button icon="dev-icons:settings" on-tap="_openSettings"></paper-icon-button>
+    </div>
+
+    <!-- Sidemenu body -->
+    <div class="menu-body">
+      <template is="dom-repeat" items="[[menu]]" as="item">
+        <paper-listbox>
+          <template is="dom-if" if="[[!_hasItems(item)]]">
+            <paper-item on-tap="_openPage">
+              <iron-icon icon="[[item.icon]]"></iron-icon>
+              <span>[[item.title]]</span>
+            </paper-item>
+          </template>
+          <template is="dom-if" if="[[_hasItems(item)]]">
+            <div class="nav-heading">[[item.title]]</div>
+            <template is="dom-repeat" items="[[item.items]]" as="subitem">
+              <paper-item on-tap="_openSubPage" class$="[[_hasClassBadge(subitem)]]">
+                <iron-icon icon="[[subitem.icon]]"></iron-icon>
+                <template is="dom-if" if="[[subitem.badge]]">
+                	<span class="icon-badge">[[_computeBadgeCount(subitem)]]</span>
+                </template>
+                <span class="title">[[subitem.title]]<template is="dom-if" if="[[subitem.badge]]"><span class="badge">[[subitem.badgeCount]]</span></template></span>
+              </paper-item>
+            </template>
+          </template>
+        </paper-listbox>
+      </template>
+    </div>
+
+    <!-- Sidemenu Footer -->
+    <div class="menu-footer">
+      <paper-icon-button id="mode-button" icon="dev-icons:chevron-left" on-tap="_handleCollapse"></paper-icon-button>
+    </div>
   </template>
 
   <script>
@@ -23,11 +211,19 @@
       static get is() { return 'exmg-cms-sidemenu'; }
       static get properties() {
         return {
-          prop1: {
-            type: String,
-            value: 'exmg-cms-sidemenu'
+          menu: {
+            type: Array,
           }
         };
+      }
+      _hasItems(item) {
+        return item.items;
+      }
+      _hasClassBadge(item) {
+        return item.badge ? 'badge' : '';
+      }
+      _computeBadgeCount(item) {
+        return item.badgeCount > 99 ? '...' : item.badgeCount;
       }
     }
 

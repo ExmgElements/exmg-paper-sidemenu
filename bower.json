@@ -3,9 +3,19 @@
   "description": "Collapsible side menu for CMS projects",
   "main": "exmg-cms-sidemenu.html",
   "dependencies": {
+    "paper-listbox": "PolymerElements/paper-listbox#^2.0.0",
+    "paper-item": "PolymerElements/paper-item#^2.0.0",
+    "paper-icon-button": "PolymerElements/paper-icon-button#^2.0.0",
+    "iron-icon": "PolymerElements/iron-icon#^2.0.0",
+    "iron-iconset-svg": "PolymerElements/iron-iconset-svg#^2.0.0",
     "polymer": "Polymer/polymer#^2.0.0"
   },
   "devDependencies": {
+    "paper-icon-button": "PolymerElements/paper-icon-button#^2.0.0",
+    "iron-icon": "PolymerElements/iron-icon#^2.0.0",
+    "iron-ajax": "PolymerElements/iron-ajax#^2.0.0",
+    "paper-styles": "PolymerElements/paper-styles#^2.0.0",
+    "iron-iconset-svg": "PolymerElements/iron-iconset-svg#^2.0.0",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
