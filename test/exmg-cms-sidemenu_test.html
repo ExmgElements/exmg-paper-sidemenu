@@ -15,36 +15,37 @@
 
     <test-fixture id="BasicTestFixture">
       <template>
-        <exmg-cms-sidemenu></exmg-cms-sidemenu>
+        <exmg-cms-sidemenu selected="rooms/" menu='[{"path": "sport/{{sportId}}/games/","icon": "dev-icons:videogame-asset","title": "Games"},{"title": "Manage","items": [{"path": "rooms/","icon": "dev-icons:view-carousel","title": "Rooms"},{"path": "sport/teams/","icon": "dev-icons:bubble-chart","title": "Teams"},{"path": "rewardmodels/","icon": "dev-icons:card-giftcard","title": "Reward Models"}]}]'></exmg-cms-sidemenu>
       </template>
     </test-fixture>
 
     <test-fixture id="ChangedPropertyTestFixture">
       <template>
-        <exmg-cms-sidemenu prop1="new-prop1"></exmg-cms-sidemenu>
+        <exmg-cms-sidemenu menu="new-prop1"></exmg-cms-sidemenu>
       </template>
     </test-fixture>
 
     <script>
-      suite('exmg-cms-sidemenu', function() {
 
+
+      suite('exmg-cms-sidemenu', function() {
         test('instantiating the element with default properties works', function() {
           var element = fixture('BasicTestFixture');
-          assert.equal(element.prop1, 'exmg-cms-sidemenu');
-          var elementShadowRoot = element.shadowRoot;
-          var elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello exmg-cms-sidemenu!');
+          assert.equal(element.menu.length, 2);
+        //  var elementShadowRoot = element.shadowRoot;
+        //  var elementHeader = elementShadowRoot.querySelector('paper-item[aria-selected]');
+        //  console.log('elementHeader', elementHeader);
+        //  assert.equal(elementHeader.innerHTML, 'Hello exmg-cms-sidemenu!');
         });
 
-        test('setting a property on the element works', function() {
-          // Create a test fixture
-          var element = fixture('ChangedPropertyTestFixture');
-          assert.equal(element.prop1, 'new-prop1');
-          var elementShadowRoot = element.shadowRoot;
-          var elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello new-prop1!');
-        });
-
+        // test('setting a property on the element works', function() {
+        //   // Create a test fixture
+        //   var element = fixture('ChangedPropertyTestFixture');
+        //   assert.equal(element.prop1, 'new-prop1');
+        //   var elementShadowRoot = element.shadowRoot;
+        //   var elementHeader = elementShadowRoot.querySelector('h2');
+        //   assert.equal(elementHeader.innerHTML, 'Hello new-prop1!');
+        // });
       });
     </script>
 
