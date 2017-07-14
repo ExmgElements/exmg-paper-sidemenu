@@ -209,7 +209,7 @@
       <template is="dom-repeat" items="[[menu]]" as="item">
         <paper-listbox attr-for-selected="data-path" selected="{{selected}}" selectable="paper-item">
           <template is="dom-if" if="[[!_hasItems(item)]]">
-            <paper-item data-path="[[item.path]]" role="menuitem">
+            <paper-item data-path$="[[item.path]]" role="menuitem">
               <iron-icon icon="[[item.icon]]"></iron-icon>
               <span>[[item.title]]</span>
             </paper-item>
@@ -217,7 +217,7 @@
           <template is="dom-if" if="[[_hasItems(item)]]">
             <div class="nav-heading">[[item.title]]</div>
             <template is="dom-repeat" items="[[item.items]]" as="subitem">
-              <paper-item data-path="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
+              <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
                 <iron-icon icon="[[subitem.icon]]"></iron-icon>
                 <template is="dom-if" if="[[subitem.badge]]">
                 	<span class="icon-badge">[[_computeBadgeCount(subitem)]]</span>
