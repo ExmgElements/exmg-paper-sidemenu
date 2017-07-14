@@ -20,20 +20,18 @@
       .nav-heading {
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
-        -webkit-flex-shrink: 0;
-        flex-shrink: 0;
         padding: 0 24px;
         overflow: hidden;
         cursor: default;
         -webkit-user-select: none;
         color: rgba(0,0,0,0.38);
         font-size: 12px;
-        line-height: 24px;
+        line-height: 40px;
         letter-spacing: .5px;
         text-transform: uppercase;
         height: 32px;
-        -webkit-transition: height .3s ease,opacity .3s ease .15s;
-        transition: height .3s ease,opacity .3s
+        -webkit-transition: height .3s ease, opacity .3s ease .15s;
+        transition: height .3s ease, opacity .3s;
       }
 
       paper-item {
@@ -206,8 +204,9 @@
       </paper-listbox>
 
       <!-- Menu Items -->
-      <template is="dom-repeat" items="[[menu]]" as="item">
-        <paper-listbox attr-for-selected="data-path" selected="{{selected}}" selectable="paper-item">
+
+      <paper-listbox attr-for-selected="data-path" selected="{{selected}}" selectable="paper-item">
+        <template is="dom-repeat" items="[[menu]]" as="item">
           <template is="dom-if" if="[[!_hasItems(item)]]">
             <paper-item data-path$="[[item.path]]" role="menuitem">
               <iron-icon icon="[[item.icon]]"></iron-icon>
@@ -226,8 +225,8 @@
               </paper-item>
             </template>
           </template>
-        </paper-listbox>
-      </template>
+        </template>
+      </paper-listbox>
     </div>
 
     <!-- Sidemenu Footer -->
