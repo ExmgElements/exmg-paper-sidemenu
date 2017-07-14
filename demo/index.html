@@ -28,6 +28,12 @@
           height: 100%;
         }
 
+        x-demo {
+          box-sizing: border-box;
+          box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+          z-index: 11;
+        }
+
       </style>
     </custom-style>
   </head>
@@ -35,22 +41,22 @@
     <dom-module id="x-demo">
         <template>
           <style>
-           :host{
+            :host{
              display: inline-block;
              height: 100%;
              overflow: scroll;
              background-color: white;
-           }
-           exmg-cms-sidemenu {
+            }
+            exmg-cms-sidemenu {
              width: 256px;
-           }
-           exmg-cms-sidemenu[collapsed] {
+            }
+            exmg-cms-sidemenu[collapsed] {
              width: 68px;
-           }
+            }
           </style>
 
           <!-- Menu  -->
-          <exmg-cms-sidemenu menu="[[menu]]"></exmg-cms-sidemenu>
+          <exmg-cms-sidemenu menu="[[menu]]" selected="rooms/"></exmg-cms-sidemenu>
 
           <!-- Load menu from json file  -->
           <iron-ajax url="data/menu.json" last-response="{{menu}}" auto></iron-ajax>

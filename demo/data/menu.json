@@ -59,7 +59,9 @@
       {
         "path": "notifications/",
         "icon": "dev-icons:notifications",
-        "title": "Notifications"
+        "title": "Notifications",
+        "badge": true,
+        "badgeCount": 14
       },
       {
         "path": "admin/",
