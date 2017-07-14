@@ -12,7 +12,7 @@
       :host {
         display: block;
         color: #747574;
-        height: 100%;
+        height: 100vh;
         overflow: auto;
         position: relative;
       }
@@ -20,24 +20,25 @@
       .nav-heading {
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
-        padding: 0 24px;
+        padding: 0 1.5rem;
         overflow: hidden;
         cursor: default;
         -webkit-user-select: none;
         color: rgba(0,0,0,0.38);
         font-size: 12px;
-        line-height: 40px;
+        height: 2.5rem;
+        line-height: 3rem;
         letter-spacing: .5px;
         text-transform: uppercase;
-        height: 32px;
-        -webkit-transition: height .3s ease, opacity .3s ease .15s;
         transition: height .3s ease, opacity .3s;
+      }
+
+      .menu-item {
+        text-decoration: none;
       }
 
       paper-item {
         margin: 0;
-        height: 32px;
-        min-width: 0;
         overflow: visible;
         width: 100%;
         -webkit-border-radius: 0;
@@ -47,7 +48,6 @@
         font-weight: 500;
         color: #747574;
         letter-spacing: 0;
-        line-height: 20px;
         text-align: start;
         text-decoration: none;
         text-transform: none;
@@ -56,19 +56,19 @@
 
       paper-item {
         --paper-item: {
-          min-height: 32px;
-          padding: 0px 24px;
+          min-height: 2rem;
+          padding: 0 1.5rem;
           box-sizing: border-box;
         }
       }
 
       paper-item > iron-icon {
-        padding-right: 16px;
+        padding-right: 1rem;
       }
 
       .menu-header paper-item {
         box-sizing: border-box;
-        padding: 0px 24px;
+        padding: 0 1.5rem;
       }
 
       .menu-header {
@@ -160,7 +160,7 @@
         height: 20px;
         background-color: #46B614;
         color: white;
-        margin-left: 4px;
+        margin-left: .5rem;
       }
       span.icon-badge {
         display:none;
@@ -208,21 +208,25 @@
       <paper-listbox attr-for-selected="data-path" selected="{{selected}}" selectable="paper-item">
         <template is="dom-repeat" items="[[menu]]" as="item">
           <template is="dom-if" if="[[!_hasItems(item)]]">
-            <paper-item data-path$="[[item.path]]" role="menuitem">
-              <iron-icon icon="[[item.icon]]"></iron-icon>
-              <span>[[item.title]]</span>
-            </paper-item>
+            <a href="#" tabindex="-1" class="menu-item">
+              <paper-item data-path$="[[item.path]]" role="menuitem">
+                <iron-icon icon="[[item.icon]]"></iron-icon>
+                <span>[[item.title]]</span>
+              </paper-item>
+            </a>
           </template>
           <template is="dom-if" if="[[_hasItems(item)]]">
             <div class="nav-heading">[[item.title]]</div>
             <template is="dom-repeat" items="[[item.items]]" as="subitem">
-              <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
-                <iron-icon icon="[[subitem.icon]]"></iron-icon>
-                <template is="dom-if" if="[[subitem.badge]]">
-                	<span class="icon-badge">[[_computeBadgeCount(subitem)]]</span>
-                </template>
-                <span class="title">[[subitem.title]]<template is="dom-if" if="[[subitem.badge]]"><span class="badge">[[subitem.badgeCount]]</span></template></span>
-              </paper-item>
+              <a href="#" tabindex="-1" class="menu-item">
+                <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
+                  <iron-icon icon="[[subitem.icon]]"></iron-icon>
+                  <template is="dom-if" if="[[subitem.badge]]">
+                  	<span class="icon-badge">[[_computeBadgeCount(subitem)]]</span>
+                  </template>
+                  <span class="title">[[subitem.title]]<template is="dom-if" if="[[subitem.badge]]"><span class="badge">[[subitem.badgeCount]]</span></template></span>
+                </paper-item>
+              </a>
             </template>
           </template>
         </template>
