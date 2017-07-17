@@ -48,95 +48,87 @@ Grouping menu items will be done in the following structure:
   <template>
     <style>
       :host {
-        display: block;
         color: #747574;
-        height: 100%;
-        overflow: auto;
-        position: relative;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        background: #fff;
+        transition: all 0.3s ease;
+        @apply(--layout-flex);
+        @apply(--layout-vertical);
       }
 
       .nav-heading {
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
-        padding: 0 1.5rem;
+        padding: 0 14px;
         overflow: hidden;
         cursor: default;
         -webkit-user-select: none;
-        color: rgba(0,0,0,0.38);
         font-size: 12px;
         height: 2.5rem;
         line-height: 3rem;
         letter-spacing: .5px;
         text-transform: uppercase;
-        transition: height .3s ease, opacity .3s;
+        color: #999;
       }
 
       .menu-item {
         text-decoration: none;
+        outline: none;
+      }
+
+      paper-listbox {
+        border-top: 1px solid #ddd;
+        background: none;
       }
 
       paper-item {
+        height: 2rem;
+        min-height: auto;
+        box-sizing: border-box;
         margin: 0;
         overflow: visible;
         width: 100%;
-        -webkit-border-radius: 0;
-        border-radius: 0;
-        color: rgba(0,0,0,0.54);
         font-size: 14px;
         font-weight: 500;
         color: #747574;
-        letter-spacing: 0;
         text-align: start;
-        text-decoration: none;
-        text-transform: none;
         cursor: pointer;
-      }
-
-      paper-item {
-        --paper-item: {
-          min-height: 2rem;
-          padding: 0 1.5rem;
-          box-sizing: border-box;
-        }
       }
 
       paper-item > iron-icon {
         padding-right: 1rem;
       }
 
-      .menu-header paper-item {
-        box-sizing: border-box;
-        width: inherit;
-        display: inline-block;
-        padding: 0 1.5rem;
-      }
-
-      .menu-header paper-item:last-of-type {
-        border-left: 1px solid #ddd;
-      }
-
       .menu-header {
-        border-bottom: 1px solid #ddd;
-        height: 56px;
-        margin-bottom: 12px;
-        @apply(--layout-horizontal);
+        background: #F9FAF9;
+        min-height: 3.5rem;
+        @apply(--layout);
         @apply(--layout-center);
       }
+
       .menu-header paper-listbox {
+        @apply(--layout);
+        width: 100%;
+        border: none;
+      }
+
+      .menu-header .menu-item:first-child {
         border-right: 1px solid #ddd;
         @apply(--layout-flex);
       }
-      .menu-header paper-icon-button {
-        display: block !important;
-        margin: 0 4px;
-        color: #747574;
+
+      .menu-header paper-item {
+        padding-right: 0;
       }
 
-      .menu-footer {
-        position:absolute;
-        bottom: 0px;
-        width: 100%;
+      .menu-body {
+        @apply(--layout-flex);
+        overflow: auto;
       }
+
       .menu-footer paper-icon-button {
         transition: transform .1s linear;
         transform: rotate(0deg);
@@ -146,18 +138,18 @@ Grouping menu items will be done in the following structure:
       .menu-footer {
         border-top: 1px solid #ddd;
         background: #F9FAF9;
-        height: 44px;
-        @apply(--layout-horizontal);
+        min-height: 3rem;
+        @apply(--layout);
         @apply(--layout-end-justified);
         @apply(--layout-center);
       }
-      .menu-footer paper-icon-button{
+      .menu-footer paper-icon-button {
         margin: 0 4px;
         color: #747574;
       }
 
       :host([collapsed]) .menu-footer {
-        @apply(--layout-horizontal);
+        @apply(--layout);
         @apply(--layout-center-justified);
         @apply(--layout-center);
       }
@@ -165,27 +157,27 @@ Grouping menu items will be done in the following structure:
       :host([collapsed]) paper-item > iron-icon { padding: 0; }
       :host([collapsed]) paper-item > span { display: none; }
       :host([collapsed]) .nav-heading { display: none; }
-      :host([collapsed]) .menu-header paper-listbox{
+      :host([collapsed]) .menu-header paper-listbox {
         border-bottom: 0;
         padding: 5px 0;
       }
       :host([collapsed]) paper-listbox {
-        border-bottom: 1px solid #ddd;
         padding: 5px 0;
       }
 
-      :host([collapsed]) .menu-header { border-bottom: 0px; }
       :host([collapsed]) .menu-header {
         @apply(--layout-vertical);
       }
 
-      :host([collapsed]) .menu-header paper-listbox { border-right: 0px; }
-
-      :host([collapsed]) .menu-header paper-listbox span {
-        display: none;
+      :host([collapsed]) .menu-header paper-listbox {
+        @apply(--layout-vertical);
+        border-right: 0px;
       }
 
-      :host([collapsed]) paper-item { height: 36px; }
+      :host([collapsed]) .menu-header .menu-item { border-right: none; }
+
+      :host([collapsed]) paper-item { height: 2.5rem; }
+
       :host([collapsed]) .menu-footer paper-icon-button { transform: rotate(180deg); }
 
       a[aria-selected] paper-item {
@@ -219,7 +211,7 @@ Grouping menu items will be done in the following structure:
         padding: 1px 4px;
       }
       :host([collapsed]) paper-item span.icon-badge {
-        display:block;
+        display: block;
       }
 
     </style>
