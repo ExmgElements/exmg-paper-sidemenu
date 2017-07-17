@@ -3,6 +3,7 @@
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../paper-listbox/paper-listbox.html">
 <link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-tooltip/paper-tooltip.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 
@@ -54,15 +55,25 @@ Grouping menu items will be done in the following structure:
         left: 0;
         bottom: 0;
         background: #fff;
+        box-shadow: 2px 0 2px 0 rgba(0,0,0,.1);
         transition: all 0.3s ease;
         @apply(--layout-flex);
         @apply(--layout-vertical);
       }
 
-      .nav-heading {
-        -webkit-box-sizing: border-box;
+      .menu-group {
+        border-top: 1px solid #ddd;
+        padding-bottom: .5rem;
+      }
+
+      .menu-group:first-child {
+        border: none;
+      }
+
+      .menu-group-title {
+        display: block;
         box-sizing: border-box;
-        padding: 0 14px;
+        padding: 0 24px;
         overflow: hidden;
         cursor: default;
         -webkit-user-select: none;
@@ -72,9 +83,11 @@ Grouping menu items will be done in the following structure:
         letter-spacing: .5px;
         text-transform: uppercase;
         color: #999;
+        transition: all .3s ease;
       }
 
       .menu-item {
+        display: block;
         text-decoration: none;
         outline: none;
       }
@@ -89,6 +102,7 @@ Grouping menu items will be done in the following structure:
         min-height: auto;
         box-sizing: border-box;
         margin: 0;
+        padding: 0 24px;
         overflow: visible;
         width: 100%;
         font-size: 14px;
@@ -96,10 +110,31 @@ Grouping menu items will be done in the following structure:
         color: #747574;
         text-align: start;
         cursor: pointer;
+        position: relative;
       }
 
-      paper-item > iron-icon {
+      paper-item .title {
+        @apply(--layout-flex);
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        opacity: 1;
+        transition: all .4s ease;
+      }
+
+      paper-item iron-icon {
         padding-right: 1rem;
+        width: 24px;
+        max-width: 24px;
+        height: 20px;
+      }
+
+      paper-tooltip {
+        display: block;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .3s ease;
+        border: 2px solid red;
       }
 
       .menu-header {
@@ -130,7 +165,7 @@ Grouping menu items will be done in the following structure:
       }
 
       .menu-footer paper-icon-button {
-        transition: transform .1s linear;
+        transition: transform .3s ease;
         transform: rotate(0deg);
         @apply(--layout-end-justified);
       }
@@ -154,9 +189,19 @@ Grouping menu items will be done in the following structure:
         @apply(--layout-center);
       }
 
-      :host([collapsed]) paper-item > iron-icon { padding: 0; }
-      :host([collapsed]) paper-item > span { display: none; }
-      :host([collapsed]) .nav-heading { display: none; }
+      :host([collapsed]) paper-item iron-icon { padding: 0; }
+      :host([collapsed]) paper-item .title {
+        opacity: 0;
+        width: 0;
+        pointer-events: none;
+      }
+      :host([collapsed]) .menu-group {
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+      }
+      :host([collapsed]) .menu-group-title {
+        height: 0;
+      }
       :host([collapsed]) .menu-header paper-listbox {
         border-bottom: 0;
         padding: 5px 0;
@@ -178,39 +223,34 @@ Grouping menu items will be done in the following structure:
 
       :host([collapsed]) paper-item { height: 2.5rem; }
 
+      :host([collapsed]) paper-tooltip { opacity: 1; }
+
       :host([collapsed]) .menu-footer paper-icon-button { transform: rotate(180deg); }
 
       a[aria-selected] paper-item {
         color: #0099E9;
       }
 
-      span.badge {
+      .title-badge, .icon-badge {
+        display: inline-block;
         font-size: 11px;
         border-radius: 12px;
-        margin-left: 0px;
-        margin-bottom: 0px;
-        padding: 2px 6px;
-        height: 20px;
         background-color: #46B614;
-        color: white;
-        margin-left: .5rem;
+        color: #fff;
+        line-height: 1;
+        padding: 2px 4px;
+        min-width: 1rem;
+        text-align: center;
       }
-      span.icon-badge {
-        display:none;
-        font-size: 11px;
-        border-radius: 12px;
-        margin-left: 0px;
-        margin-bottom: 0px;
-        background-color: #46B614;
-        color: white;
-        margin-left: 4px;
+
+      .icon-badge {
+        display: none;
         position: absolute;
-        left: 30px;
+        left: 35px;
         top: 0px;
-        line-height: 16px;
-        padding: 1px 4px;
       }
-      :host([collapsed]) paper-item span.icon-badge {
+
+      :host([collapsed]) .icon-badge {
         display: block;
       }
 
@@ -222,7 +262,7 @@ Grouping menu items will be done in the following structure:
         <a href="[[_getHref('/')]]" data-path="/" tabindex="-1" class="menu-item">
           <paper-item role="menuitem">
             <iron-icon icon="dev-icons:dashboard"></iron-icon>
-            <span>Dashboard</span>
+            <span class="title">Dashboard</span>
           </paper-item>
         </a>
         <a href="[[_getHref('settings/')]]" data-path="settings/" tabindex="-1" class="menu-item">
@@ -240,26 +280,33 @@ Grouping menu items will be done in the following structure:
       <paper-listbox attr-for-selected="data-path" selected="{{selected}}" selectable="a">
         <template is="dom-repeat" items="[[menu]]" as="item">
           <template is="dom-if" if="[[!_hasItems(item)]]">
-            <a href="[[_getHref(item.path)]]" data-path$="[[item.path]]" tabindex="-1" class="menu-item">
-              <paper-item data-path$="[[item.path]]" role="menuitem">
-                <iron-icon icon="[[item.icon]]"></iron-icon>
-                <span>[[item.title]]</span>
-              </paper-item>
-            </a>
-          </template>
-          <template is="dom-if" if="[[_hasItems(item)]]">
-            <div class="nav-heading">[[item.title]]</div>
-            <template is="dom-repeat" items="[[item.items]]" as="subitem">
-              <a href="[[_getHref(subitem.path)]]" data-path$="[[subitem.path]]" tabindex="-1" class="menu-item">
-                <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
-                  <iron-icon icon="[[subitem.icon]]"></iron-icon>
-                  <template is="dom-if" if="[[subitem.badge]]">
-                  	<span class="icon-badge">[[_computeBadgeCount(subitem)]]</span>
-                  </template>
-                  <span class="title">[[subitem.title]]<template is="dom-if" if="[[subitem.badge]]"><span class="badge">[[subitem.badgeCount]]</span></template></span>
+            <div class="menu-group">
+              <a href="[[_getHref(item.path)]]" data-path$="[[item.path]]" tabindex="-1" class="menu-item" id="[[item.title]]">
+                <paper-item data-path$="[[item.path]]" role="menuitem">
+                  <iron-icon icon="[[item.icon]]"></iron-icon>
+                  <span class="title">[[item.title]]</span>
                 </paper-item>
               </a>
-            </template>
+              <paper-tooltip position="right" for="[[item.title]]">[[item.title]]</paper-tooltip>
+            </div>
+          </template>
+          <template is="dom-if" if="[[_hasItems(item)]]">
+            <div class="menu-group">
+              <div class="menu-group-title">[[item.title]]</div>
+              <template is="dom-repeat" items="[[item.items]]" as="subitem">
+                <a href="[[_getHref(subitem.path)]]" data-path$="[[subitem.path]]" tabindex="-1" class="menu-item" id="[[subitem.title]]">
+                  <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
+                    <iron-icon icon="[[subitem.icon]]"></iron-icon>
+                    <template is="dom-if" if="[[subitem.badge]]">
+                      <span class="icon-badge">[[_computeBadgeCount(subitem)]]</span>
+                    </template>
+                    <span class="title">[[subitem.title]]
+                      <template is="dom-if" if="[[subitem.badge]]"><span class="title-badge">[[subitem.badgeCount]]</span></template></span>
+                  </paper-item>
+                  <paper-tooltip position="right" for="[[subitem.title]]">[[subitem.title]]</paper-tooltip>
+                </a>
+              </template>
+            </div>
           </template>
         </template>
       </paper-listbox>
