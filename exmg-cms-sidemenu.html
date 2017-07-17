@@ -6,6 +6,44 @@
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 
+<!--
+`exmg-cms-sidemenu` displays a vertical sidemenu that can be collapsed.
+
+### Menu data model
+Menu items need to have the following structure:
+```js
+{
+  "path": "user/", // Path for href and selection
+  "icon": "dev-icons:people", // Icon that needs to be pre-loaded
+  "title": "Users" // Copy to display
+}
+```
+
+Grouping menu items will be done in the following structure:
+```js
+{
+  "title": "Users",
+  "items": [
+    {
+      "path": "user/",
+      "icon": "dev-icons:people",
+      "title": "Users"
+    },
+    {
+      "path": "redeem/",
+      "icon": "dev-icons:attach-money",
+      "title": "Redeem Requests"
+    },
+    {
+      "path": "reporteduser/",
+      "icon": "dev-icons:feedback",
+      "title": "Reported Users"
+    }
+  ]
+}
+```
+
+-->
 <dom-module id="exmg-cms-sidemenu">
   <template>
     <style>
@@ -261,13 +299,15 @@
             type: Boolean,
             value: false,
           },
+          /*
+          * For selection you can use the path value
+          */
           selected: {
             type: String,
           },
-          collapsedWidth: {
-            type: Number,
-            value: 68,
-          },
+          /*
+          * For selection you can use the path value
+          */
           menu: {
             type: Array,
           },
@@ -286,7 +326,7 @@
         return item.items;
       }
       _hasClassBadge(item) {
-        return item.badge ? 'badge' : '';
+        return item.badgeCount ? 'badge' : '';
       }
       _computeBadgeCount(item) {
         return item.badgeCount > 99 ? '...' : item.badgeCount;

@@ -60,7 +60,6 @@
         "path": "notifications/",
         "icon": "dev-icons:notifications",
         "title": "Notifications",
-        "badge": true,
         "badgeCount": 14
       },
       {
