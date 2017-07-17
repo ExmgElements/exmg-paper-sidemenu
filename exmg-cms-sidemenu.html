@@ -206,14 +206,7 @@
     <!-- Sidemenu body -->
     <div class="menu-body" role="navigation">
 
-      <!-- Collapsed header items -->
-      <!--paper-listbox class="menu-top" attr-for-selected="data-path" selected="{{selected}}">
-        <paper-item data-path="/" role="menuitem"><iron-icon icon="dev-icons:home"></iron-icon></paper-item>
-        <paper-item data-path="settings/" role="menuitem"><iron-icon icon="dev-icons:settings"></iron-icon></paper-item>
-      </paper-listbox-->
-
       <!-- Menu Items -->
-
       <paper-listbox attr-for-selected="data-path" selected="{{selected}}" selectable="a">
         <template is="dom-repeat" items="[[menu]]" as="item">
           <template is="dom-if" if="[[!_hasItems(item)]]">
