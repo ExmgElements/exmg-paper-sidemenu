@@ -147,7 +147,7 @@
       :host([collapsed]) paper-item { height: 36px; }
       :host([collapsed]) .menu-footer paper-icon-button { transform: rotate(180deg); }
 
-      paper-item[aria-selected] {
+      a[aria-selected] paper-item {
         color: #0099E9;
       }
 
@@ -205,10 +205,10 @@
 
       <!-- Menu Items -->
 
-      <paper-listbox attr-for-selected="data-path" selected="{{selected}}" selectable="paper-item">
+      <paper-listbox attr-for-selected="data-path" selected="{{selected}}" selectable="a">
         <template is="dom-repeat" items="[[menu]]" as="item">
           <template is="dom-if" if="[[!_hasItems(item)]]">
-            <a href="#" tabindex="-1" class="menu-item">
+            <a href="#" data-path$="[[item.path]]" tabindex="-1" class="menu-item">
               <paper-item data-path$="[[item.path]]" role="menuitem">
                 <iron-icon icon="[[item.icon]]"></iron-icon>
                 <span>[[item.title]]</span>
@@ -218,7 +218,7 @@
           <template is="dom-if" if="[[_hasItems(item)]]">
             <div class="nav-heading">[[item.title]]</div>
             <template is="dom-repeat" items="[[item.items]]" as="subitem">
-              <a href="#" tabindex="-1" class="menu-item">
+              <a href="#" data-path$="[[subitem.path]]" tabindex="-1" class="menu-item">
                 <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
                   <iron-icon icon="[[subitem.icon]]"></iron-icon>
                   <template is="dom-if" if="[[subitem.badge]]">
