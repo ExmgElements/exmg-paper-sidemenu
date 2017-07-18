@@ -63,7 +63,7 @@ Grouping menu items will be done in the following structure:
 
       .menu-group {
         border-top: 1px solid #ddd;
-        padding-bottom: .5rem;
+        padding-bottom: 12px;
       }
 
       .menu-group:first-child {
@@ -76,10 +76,9 @@ Grouping menu items will be done in the following structure:
         padding: 0 24px;
         overflow: hidden;
         cursor: default;
-        -webkit-user-select: none;
         font-size: 12px;
-        height: 2.5rem;
-        line-height: 3rem;
+        height: 42px;
+        line-height: 52px;
         letter-spacing: .5px;
         text-transform: uppercase;
         color: #999;
@@ -98,19 +97,14 @@ Grouping menu items will be done in the following structure:
       }
 
       paper-item {
-        height: 2rem;
+        height: 32px;
         min-height: auto;
         box-sizing: border-box;
-        margin: 0;
         padding: 0 24px;
-        overflow: visible;
-        width: 100%;
         font-size: 14px;
         font-weight: 500;
         color: #747574;
-        text-align: start;
         cursor: pointer;
-        position: relative;
       }
 
       paper-item .title {
@@ -123,7 +117,7 @@ Grouping menu items will be done in the following structure:
       }
 
       paper-item iron-icon {
-        padding-right: 1rem;
+        padding-right: 12px;
         width: 24px;
         max-width: 24px;
         height: 20px;
@@ -136,7 +130,7 @@ Grouping menu items will be done in the following structure:
 
       .menu-header {
         background: #F9FAF9;
-        min-height: 3.5rem;
+        min-height: 52px;
         @apply(--layout);
         @apply(--layout-center);
       }
@@ -170,7 +164,7 @@ Grouping menu items will be done in the following structure:
       .menu-footer {
         border-top: 1px solid #ddd;
         background: #F9FAF9;
-        min-height: 3rem;
+        min-height: 48px;
         @apply(--layout);
         @apply(--layout-end-justified);
         @apply(--layout-center);
@@ -193,14 +187,13 @@ Grouping menu items will be done in the following structure:
         pointer-events: none;
       }
       :host([collapsed]) .menu-group {
-        padding-top: .5rem;
-        padding-bottom: .5rem;
+        padding: 12px 0;
       }
       :host([collapsed]) .menu-group-title {
         height: 0;
       }
       :host([collapsed]) .menu-header paper-listbox {
-        border-bottom: 0;
+        border-bottom: none;
         padding: 5px 0;
       }
       :host([collapsed]) paper-listbox {
@@ -213,21 +206,23 @@ Grouping menu items will be done in the following structure:
 
       :host([collapsed]) .menu-header paper-listbox {
         @apply(--layout-vertical);
-        border-right: 0px;
+        border-right: none;
       }
 
-      :host([collapsed]) .menu-header .menu-item { border-right: none; }
+      :host([collapsed]) .menu-header .menu-item {
+        border-right: none;
+      }
 
-      :host([collapsed]) paper-item { height: 2.5rem; }
+      :host([collapsed]) paper-item {
+        height: 36px;
+      }
 
       :host([collapsed]) paper-tooltip {
         display: block;
       }
 
-      :host([collapsed]) .menu-footer paper-icon-button { transform: rotate(180deg); }
-
-      a[aria-selected] paper-item {
-        color: #0099E9;
+      :host([collapsed]) .menu-footer paper-icon-button {
+        transform: rotate(180deg);
       }
 
       .title-badge, .icon-badge {
@@ -238,7 +233,7 @@ Grouping menu items will be done in the following structure:
         color: #fff;
         line-height: 1;
         padding: 2px 4px;
-        min-width: 1rem;
+        min-width: 16px;
         text-align: center;
       }
 
