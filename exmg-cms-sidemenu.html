@@ -130,11 +130,10 @@ Grouping menu items will be done in the following structure:
       }
 
       paper-tooltip {
-        display: block;
-        opacity: 0;
+        --paper-tooltip-opacity: 0;
         pointer-events: none;
-        transition: opacity .3s ease;
-        border: 2px solid red;
+        transition: opacity .5s 1s ease;
+        white-space: nowrap;
       }
 
       .menu-header {
@@ -223,7 +222,9 @@ Grouping menu items will be done in the following structure:
 
       :host([collapsed]) paper-item { height: 2.5rem; }
 
-      :host([collapsed]) paper-tooltip { opacity: 1; }
+      :host([collapsed]) paper-tooltip {
+        --paper-tooltip-opacity: 1;
+      }
 
       :host([collapsed]) .menu-footer paper-icon-button { transform: rotate(180deg); }
 
@@ -264,11 +265,13 @@ Grouping menu items will be done in the following structure:
             <iron-icon icon="dev-icons:dashboard"></iron-icon>
             <span class="title">Dashboard</span>
           </paper-item>
+          <paper-tooltip position="right">Dashboard</paper-tooltip>
         </a>
         <a href="[[_getHref('settings/')]]" data-path="settings/" tabindex="-1" class="menu-item">
           <paper-item role="menuitem">
             <iron-icon icon="dev-icons:settings"></iron-icon>
           </paper-item>
+          <paper-tooltip position="right">Settings</paper-tooltip>
         </a>
       </paper-listbox>
     </div>
@@ -281,20 +284,20 @@ Grouping menu items will be done in the following structure:
         <template is="dom-repeat" items="[[menu]]" as="item">
           <template is="dom-if" if="[[!_hasItems(item)]]">
             <div class="menu-group">
-              <a href="[[_getHref(item.path)]]" data-path$="[[item.path]]" tabindex="-1" class="menu-item" id="[[item.title]]">
+              <a href="[[_getHref(item.path)]]" data-path$="[[item.path]]" tabindex="-1" class="menu-item">
                 <paper-item data-path$="[[item.path]]" role="menuitem">
                   <iron-icon icon="[[item.icon]]"></iron-icon>
                   <span class="title">[[item.title]]</span>
                 </paper-item>
+                <paper-tooltip position="right">[[item.title]]</paper-tooltip>
               </a>
-              <paper-tooltip position="right" for="[[item.title]]">[[item.title]]</paper-tooltip>
             </div>
           </template>
           <template is="dom-if" if="[[_hasItems(item)]]">
             <div class="menu-group">
               <div class="menu-group-title">[[item.title]]</div>
               <template is="dom-repeat" items="[[item.items]]" as="subitem">
-                <a href="[[_getHref(subitem.path)]]" data-path$="[[subitem.path]]" tabindex="-1" class="menu-item" id="[[subitem.title]]">
+                <a href="[[_getHref(subitem.path)]]" data-path$="[[subitem.path]]" tabindex="-1" class="menu-item">
                   <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
                     <iron-icon icon="[[subitem.icon]]"></iron-icon>
                     <template is="dom-if" if="[[subitem.badge]]">
@@ -303,7 +306,7 @@ Grouping menu items will be done in the following structure:
                     <span class="title">[[subitem.title]]
                       <template is="dom-if" if="[[subitem.badge]]"><span class="title-badge">[[subitem.badgeCount]]</span></template></span>
                   </paper-item>
-                  <paper-tooltip position="right" for="[[subitem.title]]">[[subitem.title]]</paper-tooltip>
+                  <paper-tooltip position="right">[[subitem.title]]</paper-tooltip>
                 </a>
               </template>
             </div>
