@@ -130,9 +130,7 @@ Grouping menu items will be done in the following structure:
       }
 
       paper-tooltip {
-        --paper-tooltip-opacity: 0;
-        pointer-events: none;
-        transition: opacity .5s 1s ease;
+        display: none;
         white-space: nowrap;
       }
 
@@ -223,7 +221,7 @@ Grouping menu items will be done in the following structure:
       :host([collapsed]) paper-item { height: 2.5rem; }
 
       :host([collapsed]) paper-tooltip {
-        --paper-tooltip-opacity: 1;
+        display: block;
       }
 
       :host([collapsed]) .menu-footer paper-icon-button { transform: rotate(180deg); }
