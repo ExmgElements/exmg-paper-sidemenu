@@ -54,7 +54,6 @@ Grouping menu items will be done in the following structure:
         background: #fff;
         box-shadow: 2px 0 2px 0 rgba(0,0,0,.1);
         transition: all 0.3s ease;
-        padding-top: 48px;
         @apply(--layout-flex);
         @apply(--layout-vertical);
       }
@@ -153,12 +152,6 @@ Grouping menu items will be done in the following structure:
         overflow: auto;
       }
 
-      .menu-footer paper-icon-button {
-        transition: transform .3s ease;
-        transform: rotate(0deg);
-        @apply(--layout-end-justified);
-      }
-
       .menu-footer {
         border-top: 1px solid #ddd;
         background: #F9FAF9;
@@ -167,9 +160,22 @@ Grouping menu items will be done in the following structure:
         @apply(--layout-end-justified);
         @apply(--layout-center);
       }
+
+      .menu-footer paper-icon-button {
+        transition: transform .3s ease;
+        transform: rotate(0deg);
+        @apply(--layout-end-justified);
+      }
+
       .menu-footer paper-icon-button {
         margin: 0 4px;
         color: #747574;
+      }
+
+      @media all and (max-width: 599px) {
+        .menu-footer {
+          display: none;
+        }
       }
 
       :host([collapsed]) .menu-footer {
