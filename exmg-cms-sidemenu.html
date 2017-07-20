@@ -58,15 +58,6 @@ Grouping menu items will be done in the following structure:
         @apply(--layout-vertical);
       }
 
-      .menu-group {
-        border-top: 1px solid #ddd;
-        padding-bottom: 12px;
-      }
-
-      .menu-group:first-child {
-        border: none;
-      }
-
       .menu-group-title {
         display: block;
         box-sizing: border-box;
@@ -74,12 +65,15 @@ Grouping menu items will be done in the following structure:
         overflow: hidden;
         cursor: default;
         font-size: 12px;
-        height: 42px;
-        line-height: 52px;
+        height: 36px;
+        line-height: 53px;
         letter-spacing: .5px;
         text-transform: uppercase;
         color: #999;
         transition: all .3s ease;
+        border-top: 1px solid #ddd;
+        margin-top: 12px;
+        margin-bottom: 6px;
       }
 
       .menu-item {
@@ -91,6 +85,7 @@ Grouping menu items will be done in the following structure:
       paper-listbox {
         border-top: 1px solid #ddd;
         background: none;
+        padding-top: 10px;
       }
 
       paper-item {
@@ -127,7 +122,6 @@ Grouping menu items will be done in the following structure:
 
       .menu-header {
         background: #F9FAF9;
-        min-height: 52px;
         @apply(--layout);
         @apply(--layout-center);
       }
@@ -195,13 +189,7 @@ Grouping menu items will be done in the following structure:
       }
       :host([collapsed]) .menu-group-title {
         height: 0;
-      }
-      :host([collapsed]) .menu-header paper-listbox {
-        border-bottom: none;
-        padding: 5px 0;
-      }
-      :host([collapsed]) paper-listbox {
-        padding: 5px 0;
+        margin-bottom: 14px;
       }
 
       :host([collapsed]) .menu-header {
@@ -211,6 +199,8 @@ Grouping menu items will be done in the following structure:
       :host([collapsed]) .menu-header paper-listbox {
         @apply(--layout-vertical);
         border-right: none;
+        border-bottom: none;
+        padding: 5px 0;
       }
 
       :host([collapsed]) .menu-header .menu-item {
@@ -280,33 +270,29 @@ Grouping menu items will be done in the following structure:
       <paper-listbox attr-for-selected="data-path" selected="{{selected}}" selectable="a">
         <template is="dom-repeat" items="[[menu]]" as="item">
           <template is="dom-if" if="[[!_hasItems(item)]]">
-            <div class="menu-group">
-              <a href="[[_getHref(item.path)]]" data-path$="[[item.path]]" tabindex="-1" class="menu-item">
-                <paper-item data-path$="[[item.path]]" role="menuitem">
-                  <iron-icon icon="[[item.icon]]"></iron-icon>
-                  <span class="title">[[item.title]]</span>
-                </paper-item>
-                <exmg-tooltip position="right">[[item.title]]</exmg-tooltip>
-              </a>
-            </div>
+            <a href="[[_getHref(item.path)]]" data-path$="[[item.path]]" tabindex="-1" class="menu-item">
+              <paper-item data-path$="[[item.path]]" role="menuitem">
+                <iron-icon icon="[[item.icon]]"></iron-icon>
+                <span class="title">[[item.title]]</span>
+              </paper-item>
+              <exmg-tooltip position="right">[[item.title]]</exmg-tooltip>
+            </a>
           </template>
           <template is="dom-if" if="[[_hasItems(item)]]">
-            <div class="menu-group">
-              <div class="menu-group-title">[[item.title]]</div>
-              <template is="dom-repeat" items="[[item.items]]" as="subitem">
-                <a href="[[_getHref(subitem.path)]]" data-path$="[[subitem.path]]" tabindex="-1" class="menu-item">
-                  <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
-                    <iron-icon icon="[[subitem.icon]]"></iron-icon>
-                    <template is="dom-if" if="[[subitem.badge]]">
-                      <span class="icon-badge">[[_computeBadgeCount(subitem)]]</span>
-                    </template>
-                    <span class="title">[[subitem.title]]
-                      <template is="dom-if" if="[[subitem.badge]]"><span class="title-badge">[[subitem.badgeCount]]</span></template></span>
-                  </paper-item>
-                  <exmg-tooltip position="right">[[subitem.title]]</exmg-tooltip>
-                </a>
-              </template>
-            </div>
+            <div class="menu-group-title">[[item.title]]</div>
+            <template is="dom-repeat" items="[[item.items]]" as="subitem">
+              <a href="[[_getHref(subitem.path)]]" data-path$="[[subitem.path]]" tabindex="-1" class="menu-item">
+                <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
+                  <iron-icon icon="[[subitem.icon]]"></iron-icon>
+                  <template is="dom-if" if="[[subitem.badge]]">
+                    <span class="icon-badge">[[_computeBadgeCount(subitem)]]</span>
+                  </template>
+                  <span class="title">[[subitem.title]]
+                    <template is="dom-if" if="[[subitem.badge]]"><span class="title-badge">[[subitem.badgeCount]]</span></template></span>
+                </paper-item>
+                <exmg-tooltip position="right">[[subitem.title]]</exmg-tooltip>
+              </a>
+            </template>
           </template>
         </template>
       </paper-listbox>
