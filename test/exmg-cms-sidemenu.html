@@ -4,11 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>exmg-cms-sidemenu test</title>
+    <title>exmg-cms-section-admins test</title>
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../test-fixture/test-fixture-mocha.js"></script>
 
+    <link rel="import" href="../../test-fixture/test-fixture.html">
+
+    <link rel="import" href="../demo/dev-icons.html">
     <link rel="import" href="../exmg-cms-sidemenu.html">
   </head>
   <body>
@@ -27,16 +31,35 @@
 
     <script>
 
-
       suite('exmg-cms-sidemenu', function() {
+        var basicElement;
+
+        setup(function() {
+          basicElement = fixture('BasicTestFixture');
+          Polymer.dom.flush();
+        });
+
         test('instantiating the element with default properties works', function() {
-          var element = fixture('BasicTestFixture');
-          assert.equal(element.menu.length, 2);
+          var elementShadowRoot = basicElement.shadowRoot;
+          //  var adminsList = elementShadowRoot.querySelector('admins-list');
+          setTimeout(() => {
+            var paperItems = elementShadowRoot.querySelectorAll('a.menu-item');
+            paperItems.forEach((item) => {
+              console.log('item ', item.dataset.path, item.getAttribute('aria-selected'));
+            });
+            console.log('elementHeader', paperItems);
+          },100);
+
+        });
+
+        //test('instantiating the element with default properties works', function() {
+        //  var element = fixture('BasicTestFixture');
+        //  assert.equal(element.menu.length, 2);
         //  var elementShadowRoot = element.shadowRoot;
         //  var elementHeader = elementShadowRoot.querySelector('paper-item[aria-selected]');
         //  console.log('elementHeader', elementHeader);
         //  assert.equal(elementHeader.innerHTML, 'Hello exmg-cms-sidemenu!');
-        });
+        //});
 
         // test('setting a property on the element works', function() {
         //   // Create a test fixture
@@ -46,6 +69,7 @@
         //   var elementHeader = elementShadowRoot.querySelector('h2');
         //   assert.equal(elementHeader.innerHTML, 'Hello new-prop1!');
         // });
+
       });
     </script>
 
