@@ -167,10 +167,8 @@ Grouping menu items will be done in the following structure:
         color: #747574;
       }
 
-      @media all and (max-width: 599px) {
-        .menu-footer {
-          display: none !important;
-        }
+      :host([narrow]) .menu-footer {
+        display: none !important;
       }
 
       :host([collapsed]) .menu-footer {
