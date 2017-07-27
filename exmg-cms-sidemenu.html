@@ -62,19 +62,21 @@ Grouping menu items will be done in the following structure:
       .menu-group-title {
         display: block;
         box-sizing: border-box;
-        padding: 0 20px;
+        padding: 20px 20px 10px;
         overflow: hidden;
         cursor: default;
         font-size: 12px;
-        height: 36px;
-        line-height: 53px;
         letter-spacing: .5px;
         text-transform: uppercase;
         color: #999;
         transition: all .3s ease;
-        border-top: 1px solid #ddd;
-        margin-top: 12px;
-        margin-bottom: 6px;
+      }
+
+      hr {
+        border: none;
+        background: #ddd;
+        margin: 8px 0 0;
+        height: 1px;
       }
 
       .menu-item {
@@ -83,9 +85,12 @@ Grouping menu items will be done in the following structure:
         outline: none;
       }
 
+      .menu-item.solo {
+        padding-top: 8px;
+      }
+
       paper-listbox {
-        background: none;
-        padding-top: 10px;
+        padding: 0;
       }
 
       paper-item {
@@ -125,12 +130,14 @@ Grouping menu items will be done in the following structure:
         @apply(--layout);
         @apply(--layout-center);
         border-bottom: 1px solid #ddd;
+        padding: 10px 0 8px;
       }
 
       .menu-header paper-listbox {
         @apply(--layout);
         width: 100%;
         border: none;
+        background: none;
       }
 
       .menu-header .menu-item:first-child {
@@ -188,7 +195,8 @@ Grouping menu items will be done in the following structure:
       }
       :host([collapsed]) .menu-group-title {
         height: 0;
-        margin-bottom: 14px;
+        padding: 0;
+        margin-bottom: 10px;
       }
 
       :host([collapsed]) .menu-header {
@@ -273,7 +281,7 @@ Grouping menu items will be done in the following structure:
       <paper-listbox attr-for-selected="data-path" selected="{{selected}}" selectable="a">
         <template is="dom-repeat" items="[[menu]]" as="item">
           <template is="dom-if" if="[[!_hasItems(item)]]">
-            <a href="[[_getHref(item.path)]]" data-path$="[[item.path]]" tabindex="-1" class="menu-item">
+            <a href="[[_getHref(item.path)]]" data-path$="[[item.path]]" tabindex="-1" class="menu-item solo">
               <paper-item data-path$="[[item.path]]" role="menuitem">
                 <iron-icon icon="[[item.icon]]"></iron-icon>
                 <span class="title">[[item.title]]</span>
@@ -297,6 +305,7 @@ Grouping menu items will be done in the following structure:
               </a>
             </template>
           </template>
+          <hr>
         </template>
       </paper-listbox>
     </div>
