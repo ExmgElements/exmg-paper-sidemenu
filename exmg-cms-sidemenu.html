@@ -133,6 +133,11 @@ Grouping menu items will be done in the following structure:
         padding: 10px 0 8px;
       }
 
+      :host(:not([collapsed])) .menu-header {
+        height: 56px;
+        box-sizing: border-box;
+      }
+
       .menu-header paper-listbox {
         @apply(--layout);
         width: 100%;
