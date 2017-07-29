@@ -76,11 +76,11 @@ Grouping menu items will be done in the following structure:
         border: none;
         background: #ddd;
         margin: 8px 0 0;
-        height: 1px;
+        height: 0;
       }
 
-      :host(:not([collapsed])) hr {
-        height: 0px;
+      :host([collapsed]) hr {
+        height: 1px;
       }
 
       .menu-item {
