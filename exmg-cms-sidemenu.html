@@ -130,16 +130,13 @@ Grouping menu items will be done in the following structure:
       }
 
       .menu-header {
-        background: #F9FAF9;
         @apply(--layout);
         @apply(--layout-center);
+        box-sizing: border-box;
+        background: #F9FAF9;
         border-bottom: 1px solid #ddd;
         padding: 10px 0 8px;
-      }
-
-      :host(:not([collapsed])) .menu-header {
-        height: 56px;
-        box-sizing: border-box;
+        min-height: 56px;
       }
 
       .menu-header paper-listbox {
