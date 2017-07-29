@@ -305,11 +305,11 @@ Grouping menu items will be done in the following structure:
               <a href="[[_getHref(subitem.path)]]" data-path$="[[subitem.path]]" tabindex="-1" class="menu-item">
                 <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
                   <iron-icon icon="[[subitem.icon]]"></iron-icon>
-                  <template is="dom-if" if="[[subitem.badge]]">
+                  <template is="dom-if" if="[[subitem.badgeCount]]">
                     <span class="icon-badge">[[_computeBadgeCount(subitem)]]</span>
                   </template>
                   <span class="title">[[subitem.title]]
-                    <template is="dom-if" if="[[subitem.badge]]"><span class="title-badge">[[subitem.badgeCount]]</span></template></span>
+                    <template is="dom-if" if="[[subitem.badgeCount]]"><span class="title-badge">[[subitem.badgeCount]]</span></template></span>
                 </paper-item>
                 <exmg-tooltip position="right">[[subitem.title]]</exmg-tooltip>
               </a>
