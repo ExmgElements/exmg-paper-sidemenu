@@ -130,29 +130,8 @@ Grouping menu items will be done in the following structure:
       }
 
       .menu-header {
-        @apply(--layout);
-        @apply(--layout-center);
-        box-sizing: border-box;
-        background: #F9FAF9;
         border-bottom: 1px solid #ddd;
-        padding: 10px 0 8px;
         min-height: 56px;
-      }
-
-      .menu-header paper-listbox {
-        @apply(--layout);
-        width: 100%;
-        border: none;
-        background: none;
-      }
-
-      .menu-header .menu-item:first-child {
-        border-right: 1px solid #ddd;
-        @apply(--layout-flex);
-      }
-
-      .menu-header .menu-item:nth-child(2) iron-icon {
-        padding-right: 0;
       }
 
       .menu-body {
@@ -191,11 +170,6 @@ Grouping menu items will be done in the following structure:
       }
 
       :host([collapsed]) paper-item iron-icon { padding: 0; }
-      :host([collapsed]) paper-item .title {
-        opacity: 0;
-        width: 0;
-        pointer-events: none;
-      }
       :host([collapsed]) .menu-group {
         padding: 12px 0;
       }
@@ -203,21 +177,6 @@ Grouping menu items will be done in the following structure:
         height: 0;
         padding: 0;
         margin-bottom: 10px;
-      }
-
-      :host([collapsed]) .menu-header {
-        @apply(--layout-vertical);
-      }
-
-      :host([collapsed]) .menu-header paper-listbox {
-        @apply(--layout-vertical);
-        border-right: none;
-        border-bottom: none;
-        padding: 5px 0;
-      }
-
-      :host([collapsed]) .menu-header .menu-item {
-        border-right: none;
       }
 
       :host([collapsed]) paper-item {
@@ -267,21 +226,7 @@ Grouping menu items will be done in the following structure:
 
     <!-- Sidemenu Header -->
     <div class="menu-header">
-      <paper-listbox attr-for-selected="data-path" selected="{{selected}}" selectable="a">
-        <a href="[[_getHref('/')]]" data-path="/" tabindex="-1" class="menu-item">
-          <paper-item role="menuitem">
-            <iron-icon icon="exmg-cms-sidemenu-icons:dashboard"></iron-icon>
-            <span class="title">Dashboard</span>
-          </paper-item>
-          <exmg-tooltip position="right">Dashboard</exmg-tooltip>
-        </a>
-        <a href="[[_getHref('settings/')]]" data-path="settings/" tabindex="-1" class="menu-item">
-          <paper-item role="menuitem">
-            <iron-icon icon="exmg-cms-sidemenu-icons:settings"></iron-icon>
-          </paper-item>
-          <exmg-tooltip position="right">Settings</exmg-tooltip>
-        </a>
-      </paper-listbox>
+      <slot name="header"></slot>
     </div>
 
     <!-- Sidemenu body -->
