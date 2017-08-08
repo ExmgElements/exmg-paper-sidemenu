@@ -14,7 +14,6 @@
 
     <link rel="import" href="dev-icons.html">
     <link rel="import" href="../exmg-cms-sidemenu.html">
-    <link rel="import" href="../exmg-cms-sidemenu-header.html">
 
     <custom-style>
       <style is="custom-style">
@@ -61,9 +60,7 @@
           </style>
 
           <!-- Menu  -->
-          <exmg-cms-sidemenu menu="[[menu]]" selected="rooms/" collapsed="{{collapsed}}" debug>
-            <exmg-cms-sidemenu-header slot="header" collapsed="[[collapsed]]" debug>
-            </exmg-cms-sidemenu-header>
+          <exmg-cms-sidemenu menu="[[menu]]" selected="rooms/" debug>
           </exmg-cms-sidemenu>
 
           <!-- Load menu from json file  -->

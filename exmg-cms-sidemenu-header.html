@@ -1,0 +1,189 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-listbox/paper-listbox.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../exmg-tooltip/exmg-tooltip.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="exmg-cms-sidemenu-icons.html">
+
+<!--
+`exmg-cms-sidemenu-header` default sidemenu header including a home and settings link
+
+### Menu data model
+Menu items need to have the following structure:
+```html
+
+```
+
+@group Exmg Elements
+@element exmg-cms-sidemenu
+@demo demo/index.html
+-->
+<dom-module id="exmg-cms-sidemenu-header">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      paper-listbox {
+        padding: 0;
+      }
+
+      paper-item {
+        height: 32px;
+        min-height: auto;
+        box-sizing: border-box;
+        padding: 0 20px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #747574;
+        cursor: pointer;
+      }
+
+      paper-item iron-icon {
+        padding-right: 12px;
+        width: 24px;
+        max-width: 24px;
+        height: 20px;
+      }
+
+      exmg-tooltip {
+        display: none;
+        white-space: nowrap;
+      }
+
+      .menu-header {
+        @apply(--layout);
+        @apply(--layout-center);
+        box-sizing: border-box;
+        background: #F9FAF9;
+        padding: 10px 0 8px;
+      }
+
+      .menu-header paper-listbox {
+        @apply(--layout);
+        width: 100%;
+        border: none;
+        background: none;
+      }
+
+      .menu-header .menu-item:first-child {
+        border-right: 1px solid #ddd;
+        @apply(--layout-flex);
+      }
+
+      .menu-header .menu-item:nth-child(2) iron-icon {
+        padding-right: 0;
+      }
+
+      :host([collapsed]) .menu-header {
+        @apply(--layout-vertical);
+      }
+
+      :host([collapsed]) .menu-header paper-listbox {
+        @apply(--layout-vertical);
+        border-right: none;
+        border-bottom: none;
+        padding: 5px 0;
+      }
+
+      :host([collapsed]) .menu-header .menu-item {
+        border-right: none;
+      }
+      :host([collapsed]) paper-item .title {
+        opacity: 0;
+        width: 0;
+        pointer-events: none;
+      }
+
+      a:hover paper-item {
+        background: rgba(100,100,100,.1);
+      }
+
+      a[aria-selected] paper-item {
+        color: #0099E9;
+      }
+
+      .menu-item {
+        display: block;
+        text-decoration: none;
+        outline: none;
+      }
+
+    </style>
+
+    <paper-listbox class="menu-header" slot="header" attr-for-selected="data-path" selected="{{selected}}" selectable="a">
+      <a href="[[_getHref('/')]]" data-path="/" tabindex="-1" class="menu-item">
+        <paper-item role="menuitem">
+          <iron-icon icon="[[homeIcon]]"></iron-icon>
+          <span class="title">[[homeLabel]]</span>
+        </paper-item>
+        <exmg-tooltip position="right">[[homeLabel]]</exmg-tooltip>
+      </a>
+      <a href="[[_getHref('settings/')]]" data-path="settings/" tabindex="-1" class="menu-item">
+        <paper-item role="menuitem" aria-label="[[settingsLabel]]">
+          <iron-icon icon="[[settingsIcon]]"></iron-icon>
+        </paper-item>
+        <exmg-tooltip position="right">[[settingsLabel]]</exmg-tooltip>
+      </a>
+    </paper-listbox>
+
+  </template>
+
+  <script>
+    class ExmgCmsSidemenuHeader extends Polymer.Element {
+      static get is() { return 'exmg-cms-sidemenu-header'; }
+      static get properties() {
+        return {
+          /*
+          * Disables actual href links
+          */
+          debug: {
+            type: Boolean,
+            value: false,
+          },
+          /*
+          * For selection you can use the path value
+          */
+          selected: {
+            type: String,
+          },
+          /*
+          * Label for link to home/dashboard. Default is 'Dashboard'
+          */
+          homeLabel: {
+            type: String,
+            value: 'Dashboard',
+          },
+          homeIcon: {
+            type: String,
+            value: 'exmg-cms-sidemenu-icons:dashboard',
+          },
+          /*
+          * Label for link to settings page. Default is 'Settings'
+          */
+          settingsLabel: {
+            type: String,
+            value: 'Settings',
+          },
+          settingsIcon: {
+            type: String,
+            value: 'exmg-cms-sidemenu-icons:settings',
+          },
+          collapsed: {
+            type: Boolean,
+            notify: true,
+            reflectToAttribute: true,
+            value: false,
+          },
+        };
+      }
+      _getHref(path) {
+        return this.debug ? '#' : path;
+      }
+    }
+
+    window.customElements.define(ExmgCmsSidemenuHeader.is, ExmgCmsSidemenuHeader);
+  </script>
+</dom-module>
