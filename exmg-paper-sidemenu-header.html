@@ -92,6 +92,14 @@ not change layout mode when menu is collapsing.
         @apply(--layout-vertical);
       }
 
+      :host([collapsed]) exmg-paper-tooltip {
+        display: block;
+      }
+
+      :host([collapsed]) .menu-header .menu-item:nth-child(1) iron-icon {
+        padding-right: 0;
+      }
+
       :host([collapsed]) .menu-header paper-listbox {
         @apply(--layout-vertical);
         border-right: none;
