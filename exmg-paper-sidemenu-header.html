@@ -7,15 +7,25 @@
 <link rel="import" href="exmg-paper-sidemenu-icons.html">
 
 <!--
-`exmg-paper-sidemenu-header` default sidemenu header including a home and settings link
+`exmg-paper-sidemenu-header` default sidemenu header including a home and settings link.
 
 ### Menu data model
 Menu items need to have the following structure:
 ```html
-
+<exmg-paper-sidemenu menu="[[menu]]" selected="[[selected]]" collapsed="{{collapsed}}">
+  <exmg-paper-sidemenu-header
+    slot="header"
+    collapsed="[[collapsed]]">
+  </exmg-paper-sidemenu-header>
+</exmg-paper-sidemenu>
 ```
 
-@group Exmg Elements
+Please note not to forget to bind the collpapsed attribute. Otherwise the header will
+not change layout mode when menu is collapsing.
+
+@customElement
+@polymer
+@group Exmg Paper Elements
 @element exmg-paper-sidemenu
 @demo demo/index.html
 -->
@@ -148,6 +158,7 @@ Menu items need to have the following structure:
           * For selection you can use the path value
           */
           selected: {
+            notify: true,
             type: String,
           },
           /*
@@ -157,6 +168,10 @@ Menu items need to have the following structure:
             type: String,
             value: 'Dashboard',
           },
+          /*
+          * Home icon. Default will use the dashboard icon from the
+          * exmg-paper-sidemenu-icons set.
+          */
           homeIcon: {
             type: String,
             value: 'exmg-paper-sidemenu-icons:dashboard',
@@ -168,6 +183,10 @@ Menu items need to have the following structure:
             type: String,
             value: 'Settings',
           },
+          /*
+          * Settings icon. Default will use the settins icon from the
+          * exmg-paper-sidemenu-icons set.
+          */
           settingsIcon: {
             type: String,
             value: 'exmg-paper-sidemenu-icons:settings',

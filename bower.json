@@ -11,7 +11,7 @@
     "polymer",
     "sidemenu"
   ],
-  "private": true,
+  "private": false,
   "homepage": "https://github.com/ExmgElements/exmg-paper-sidemenu",
   "repository": {
     "type": "git",

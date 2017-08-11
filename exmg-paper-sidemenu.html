@@ -43,8 +43,9 @@ Grouping menu items will be done in the following structure:
   ]
 }
 ```
-
-@group Exmg Elements
+@customElement
+@polymer
+@group Exmg Paper Elements
 @element exmg-paper-sidemenu
 @demo demo/index.html
 -->
@@ -298,6 +299,7 @@ Grouping menu items will be done in the following structure:
           * For selection you can use the path value
           */
           selected: {
+            notify: true,
             type: String,
           },
           /*

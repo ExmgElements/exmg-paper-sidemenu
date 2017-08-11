@@ -62,8 +62,8 @@
           </style>
 
           <!-- Menu  -->
-          <exmg-paper-sidemenu menu="[[menu]]" selected="rooms/" collapsed="{{collapsed}}" debug>
-            <exmg-paper-sidemenu-header slot="header" collapsed="[[collapsed]]" debug>
+          <exmg-paper-sidemenu menu="[[menu]]" selected="{{selected}}" collapsed="{{collapsed}}" debug>
+            <exmg-paper-sidemenu-header slot="header" selected="{{selected}}" collapsed="[[collapsed]]" debug>
             </exmg-paper-sidemenu-header>
           </exmg-paper-sidemenu>
 
@@ -77,6 +77,10 @@
             static get is() { return 'x-demo'; }
             static get properties() {
               return {
+                selected: {
+                  type: String,
+                  value: 'rooms/',
+                },
                 menu: {
                   type: Array,
                 },
