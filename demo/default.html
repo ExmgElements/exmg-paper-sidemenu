@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-    <title>exmg-cms-sidemenu demo</title>
+    <title>exmg-paper-sidemenu demo</title>
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
@@ -13,8 +13,8 @@
     <link rel="import" href="../../paper-styles/color.html">
 
     <link rel="import" href="dev-icons.html">
-    <link rel="import" href="../exmg-cms-sidemenu.html">
-    <link rel="import" href="../exmg-cms-sidemenu-header.html">
+    <link rel="import" href="../exmg-paper-sidemenu.html">
+    <link rel="import" href="../exmg-paper-sidemenu-header.html">
 
     <custom-style>
       <style is="custom-style">
@@ -49,22 +49,22 @@
               background-color: white;
             }
 
-            exmg-cms-sidemenu {
+            exmg-paper-sidemenu {
               display: block;
               width: 256px;
             }
 
-            exmg-cms-sidemenu[collapsed] {
+            exmg-paper-sidemenu[collapsed] {
               width: 64px;
             }
-            exmg-cms-sidemenu[collapsed] paper-item iron-icon { padding: 0; }
+            exmg-paper-sidemenu[collapsed] paper-item iron-icon { padding: 0; }
           </style>
 
           <!-- Menu  -->
-          <exmg-cms-sidemenu menu="[[menu]]" selected="rooms/" collapsed="{{collapsed}}" debug>
-            <exmg-cms-sidemenu-header slot="header" collapsed="[[collapsed]]" debug>
-            </exmg-cms-sidemenu-header>
-          </exmg-cms-sidemenu>
+          <exmg-paper-sidemenu menu="[[menu]]" selected="rooms/" collapsed="{{collapsed}}" debug>
+            <exmg-paper-sidemenu-header slot="header" collapsed="[[collapsed]]" debug>
+            </exmg-paper-sidemenu-header>
+          </exmg-paper-sidemenu>
 
           <!-- Load menu from json file  -->
           <iron-ajax url="data/menu.json" last-response="{{menu}}" auto></iron-ajax>

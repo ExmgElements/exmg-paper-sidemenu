@@ -4,10 +4,10 @@
 <link rel="import" href="../paper-item/paper-item.html">
 <link rel="import" href="../exmg-tooltip/exmg-tooltip.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="exmg-cms-sidemenu-icons.html">
+<link rel="import" href="exmg-paper-sidemenu-icons.html">
 
 <!--
-`exmg-cms-sidemenu-header` default sidemenu header including a home and settings link
+`exmg-paper-sidemenu-header` default sidemenu header including a home and settings link
 
 ### Menu data model
 Menu items need to have the following structure:
@@ -16,10 +16,10 @@ Menu items need to have the following structure:
 ```
 
 @group Exmg Elements
-@element exmg-cms-sidemenu
+@element exmg-paper-sidemenu
 @demo demo/index.html
 -->
-<dom-module id="exmg-cms-sidemenu-header">
+<dom-module id="exmg-paper-sidemenu-header">
   <template>
     <style>
       :host {
@@ -133,7 +133,7 @@ Menu items need to have the following structure:
 
   <script>
     class ExmgCmsSidemenuHeader extends Polymer.Element {
-      static get is() { return 'exmg-cms-sidemenu-header'; }
+      static get is() { return 'exmg-paper-sidemenu-header'; }
       static get properties() {
         return {
           /*
@@ -158,7 +158,7 @@ Menu items need to have the following structure:
           },
           homeIcon: {
             type: String,
-            value: 'exmg-cms-sidemenu-icons:dashboard',
+            value: 'exmg-paper-sidemenu-icons:dashboard',
           },
           /*
           * Label for link to settings page. Default is 'Settings'
@@ -169,7 +169,7 @@ Menu items need to have the following structure:
           },
           settingsIcon: {
             type: String,
-            value: 'exmg-cms-sidemenu-icons:settings',
+            value: 'exmg-paper-sidemenu-icons:settings',
           },
           collapsed: {
             type: Boolean,

@@ -12,44 +12,27 @@
 
     <link rel="import" href="../../test-fixture/test-fixture.html">
 
-    <link rel="import" href="../demo/dev-icons.html">
-    <link rel="import" href="../exmg-cms-sidemenu.html">
+    <link rel="import" href="../exmg-paper-sidemenu.html">
   </head>
   <body>
 
-    <test-fixture id="BasicTestFixture">
+    <test-fixture id="basic">
       <template>
-        <exmg-cms-sidemenu selected="rooms/" menu='[{"path": "sport/{{sportId}}/games/","icon": "dev-icons:videogame-asset","title": "Games"},{"title": "Manage","items": [{"path": "rooms/","icon": "dev-icons:view-carousel","title": "Rooms"},{"path": "sport/teams/","icon": "dev-icons:bubble-chart","title": "Teams"},{"path": "rewardmodels/","icon": "dev-icons:card-giftcard","title": "Reward Models"}]}]'></exmg-cms-sidemenu>
-      </template>
-    </test-fixture>
-
-    <test-fixture id="ChangedPropertyTestFixture">
-      <template>
-        <exmg-cms-sidemenu menu="new-prop1"></exmg-cms-sidemenu>
+        <exmg-paper-sidemenu menu='[]'></exmg-paper-sidemenu>
       </template>
     </test-fixture>
 
     <script>
 
-      suite('exmg-cms-sidemenu', function() {
-        var basicElement;
+      suite('exmg-paper-sidemenu', function() {
+        let el;
 
         setup(function() {
-          basicElement = fixture('BasicTestFixture');
-          Polymer.dom.flush();
+          el = fixture('basic');
         });
 
         test('instantiating the element with default properties works', function() {
-          var elementShadowRoot = basicElement.shadowRoot;
-          //  var adminsList = elementShadowRoot.querySelector('admins-list');
-          setTimeout(() => {
-            var paperItems = elementShadowRoot.querySelectorAll('a.menu-item');
-            paperItems.forEach((item) => {
-              console.log('item ', item.dataset.path, item.getAttribute('aria-selected'));
-            });
-            console.log('elementHeader', paperItems);
-          },100);
-
+          assert.equal(el.menu.length, 0);
         });
 
         //test('instantiating the element with default properties works', function() {
@@ -58,7 +41,7 @@
         //  var elementShadowRoot = element.shadowRoot;
         //  var elementHeader = elementShadowRoot.querySelector('paper-item[aria-selected]');
         //  console.log('elementHeader', elementHeader);
-        //  assert.equal(elementHeader.innerHTML, 'Hello exmg-cms-sidemenu!');
+        //  assert.equal(elementHeader.innerHTML, 'Hello exmg-paper-sidemenu!');
         //});
 
         // test('setting a property on the element works', function() {

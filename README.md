@@ -1,21 +1,24 @@
-# \<exmg-cms-sidemenu\>
+exmg-paper-sidemenu [![Build Status](https://travis-ci.org/ExmgElements/exmg-paper-sidemenu.svg?branch=master)](https://travis-ci.org/ExmgElements/exmg-paper-sidemenu)
+================
 
-Collapsible side menu for CMS projects
+WARNING: This element is not compatible with Polymer 1.0
 
-## Install the Polymer-CLI
+`<exmg-paper-sidemenu>` Is a collapsible sidemenu.
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your element locally.
+Please visit the [API Documentation and demo](http://ExmgElements.github.io/exmg-paper-sidemenu/) page for more information.
 
-## Viewing Your Element
+## Install
+
+Install the component using bower
+
+```
+$ bower install --save exmg-paper-sidemenu
+```
+
+## Development
+
+First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run polymer server to launch the demo page.
 
 ```
 $ polymer serve
 ```
-
-## Running Tests
-
-```
-$ polymer test
-```
-
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.

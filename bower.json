@@ -1,7 +1,22 @@
 {
-  "name": "exmg-cms-sidemenu",
-  "description": "Collapsible side menu for CMS projects",
-  "main": "exmg-cms-sidemenu.html",
+  "name": "exmg-paper-sidemenu",
+  "description": "Collapsible sidemenu",
+  "main": "exmg-paper-sidemenu.html",
+  "version": "1.0.0",
+  "authors": [
+    "Ex Machina Group"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "sidemenu"
+  ],
+  "private": true,
+  "homepage": "https://github.com/ExmgElements/exmg-paper-sidemenu",
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:ExmgElements/exmg-paper-sidemenu.git"
+  },
   "dependencies": {
     "paper-listbox": "PolymerElements/paper-listbox#^2.0.0",
     "paper-item": "PolymerElements/paper-item#^2.0.0",

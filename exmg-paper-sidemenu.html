@@ -5,10 +5,10 @@
 <link rel="import" href="../exmg-tooltip/exmg-tooltip.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="exmg-cms-sidemenu-icons.html">
+<link rel="import" href="exmg-paper-sidemenu-icons.html">
 
 <!--
-`exmg-cms-sidemenu` displays a vertical sidemenu that can be collapsed.
+`exmg-paper-sidemenu` displays a vertical sidemenu that can be collapsed.
 
 ### Menu data model
 Menu items need to have the following structure:
@@ -45,10 +45,10 @@ Grouping menu items will be done in the following structure:
 ```
 
 @group Exmg Elements
-@element exmg-cms-sidemenu
+@element exmg-paper-sidemenu
 @demo demo/index.html
 -->
-<dom-module id="exmg-cms-sidemenu">
+<dom-module id="exmg-paper-sidemenu">
   <template>
     <style>
       :host {
@@ -270,13 +270,13 @@ Grouping menu items will be done in the following structure:
 
     <!-- Sidemenu Footer -->
     <div class="menu-footer">
-      <paper-icon-button id="mode-button" icon="exmg-cms-sidemenu-icons:chevron-left" on-tap="_handleCollapse"></paper-icon-button>
+      <paper-icon-button id="mode-button" icon="exmg-paper-sidemenu-icons:chevron-left" on-tap="_handleCollapse"></paper-icon-button>
     </div>
   </template>
 
   <script>
     /**
-     * `exmg-cms-sidemenu`
+     * `exmg-paper-sidemenu`
      * Collapsible side menu for CMS projects
      *
      * @customElement
@@ -284,7 +284,7 @@ Grouping menu items will be done in the following structure:
      * @demo demo/index.html
      */
     class ExmgCmsSidemenu extends Polymer.Element {
-      static get is() { return 'exmg-cms-sidemenu'; }
+      static get is() { return 'exmg-paper-sidemenu'; }
       static get properties() {
         return {
           /*
