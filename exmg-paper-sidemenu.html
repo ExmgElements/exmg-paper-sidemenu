@@ -2,7 +2,7 @@
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../paper-listbox/paper-listbox.html">
 <link rel="import" href="../paper-item/paper-item.html">
-<link rel="import" href="../exmg-tooltip/exmg-tooltip.html">
+<link rel="import" href="../exmg-paper-tooltip/exmg-paper-tooltip.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="exmg-paper-sidemenu-icons.html">
@@ -127,7 +127,7 @@ Grouping menu items will be done in the following structure:
         height: 20px;
       }
 
-      exmg-tooltip {
+      exmg-paper-tooltip {
         display: none;
         white-space: nowrap;
       }
@@ -186,7 +186,7 @@ Grouping menu items will be done in the following structure:
         height: 36px;
       }
 
-      :host([collapsed]) exmg-tooltip {
+      :host([collapsed]) exmg-paper-tooltip {
         display: block;
       }
 
@@ -244,7 +244,7 @@ Grouping menu items will be done in the following structure:
                 <iron-icon icon="[[item.icon]]"></iron-icon>
                 <span class="title">[[item.title]]</span>
               </paper-item>
-              <exmg-tooltip position="right">[[item.title]]</exmg-tooltip>
+              <exmg-paper-tooltip position="right">[[item.title]]</exmg-paper-tooltip>
             </a>
           </template>
           <template is="dom-if" if="[[_hasItems(item)]]">
@@ -259,7 +259,7 @@ Grouping menu items will be done in the following structure:
                   <span class="title">[[subitem.title]]
                     <template is="dom-if" if="[[subitem.badgeCount]]"><span class="title-badge">[[subitem.badgeCount]]</span></template></span>
                 </paper-item>
-                <exmg-tooltip position="right">[[subitem.title]]</exmg-tooltip>
+                <exmg-paper-tooltip position="right">[[subitem.title]]</exmg-paper-tooltip>
               </a>
             </template>
           </template>
