@@ -314,7 +314,21 @@ Grouping menu items will be done in the following structure:
             reflectToAttribute: true,
             value: false,
           },
+          narrow: {
+            type: Boolean,
+            value: false,
+          },
         };
+      }
+      static get observers() {
+        return [
+          '_observeNarrow(narrow)',
+        ];
+      }
+      _observeNarrow(narrow) {
+        if(narrow && this.collapsed) {
+          this.set('collapsed', false);
+        }
       }
       _getHref(path) {
         return this.debug ? '#' : path;
@@ -331,7 +345,6 @@ Grouping menu items will be done in the following structure:
       _handleCollapse() {
         this.set('collapsed', !this.collapsed);
       }
-
     }
 
     window.customElements.define(ExmgCmsSidemenu.is, ExmgCmsSidemenu);
