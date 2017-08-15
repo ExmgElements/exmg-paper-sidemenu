@@ -11,6 +11,7 @@
 
     <link rel="import" href="../../paper-styles/typography.html">
     <link rel="import" href="../../paper-styles/color.html">
+    <link rel="import" href="../../iron-media-query/iron-media-query.html">
 
     <link rel="import" href="dev-icons.html">
     <link rel="import" href="../exmg-paper-sidemenu.html">
@@ -61,8 +62,10 @@
             }
           </style>
 
+          <iron-media-query query="(min-width: 500px)" query-matches="{{full}}"></iron-media-query>
+
           <!-- Menu  -->
-          <exmg-paper-sidemenu menu="[[menu]]" selected="{{selected}}" collapsed="{{collapsed}}" debug>
+          <exmg-paper-sidemenu menu="[[menu]]" selected="{{selected}}" collapsed="{{collapsed}}" narrow$="[[!full]]" debug>
             <exmg-paper-sidemenu-header slot="header" selected="{{selected}}" collapsed="[[collapsed]]" debug>
             </exmg-paper-sidemenu-header>
           </exmg-paper-sidemenu>
