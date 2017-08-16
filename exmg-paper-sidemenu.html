@@ -53,14 +53,13 @@ Grouping menu items will be done in the following structure:
   <template>
     <style>
       :host {
-        color: #747574;
         height: 100%;
-        background: #fff;
-        box-shadow: 2px 0 2px 0 rgba(0,0,0,.1);
+        background-color: var(--exmg-paper-sidemenu-background, white);
+        box-shadow: 2px 0 2px 0 rgba(0, 0, 0, .1);
         transition: all 0.3s ease;
-        @apply(--layout-flex);
-        @apply(--layout-vertical);
-
+        @apply --layout-flex;
+        @apply --layout-vertical;
+        @apply --exmg-paper-sidemenu;
       }
 
       .menu-group-title {
@@ -72,8 +71,9 @@ Grouping menu items will be done in the following structure:
         font-size: 12px;
         letter-spacing: .5px;
         text-transform: uppercase;
-        color: #999;
         transition: all .3s ease;
+        color: var(--exmg-paper-sidemenu-group-text-color, rgba(0, 0, 0, var(--dark-secondary-opacity)));
+        @apply --exmg-paper-sidemenu-group-title;
       }
 
       hr {
@@ -108,8 +108,9 @@ Grouping menu items will be done in the following structure:
         padding: 0 20px;
         font-size: 14px;
         font-weight: 500;
-        color: #747574;
+        color: var(--exmg-paper-sidemenu-item-text-color, rgba(0, 0, 0, var(--dark-secondary-opacity)));
         cursor: pointer;
+        @apply --exmg-paper-sidemenu-item;
       }
 
       paper-item .title {
@@ -119,6 +120,7 @@ Grouping menu items will be done in the following structure:
         overflow: hidden;
         opacity: 1;
         transition: all .4s ease;
+        @apply --exmg-paper-sidemenu-item-title;
       }
 
       paper-item iron-icon {
@@ -136,31 +138,34 @@ Grouping menu items will be done in the following structure:
       .menu-header {
         border-bottom: 1px solid #ddd;
         min-height: 56px;
+        @apply --exmg-paper-sidemenu-menu-header;
       }
 
       .menu-body {
         @apply(--layout-flex);
         overflow: auto;
+        @apply --exmg-paper-sidemenu-menu-body;
       }
 
       .menu-footer {
         border-top: 1px solid #ddd;
-        background: #F9FAF9;
+        background: var(--exmg-paper-sidemenu-menu-footer-background-color, #F9FAF9);
         min-height: 48px;
-        @apply(--layout);
-        @apply(--layout-end-justified);
-        @apply(--layout-center);
+        @apply --layout;
+        @apply --layout-end-justified;
+        @apply --layout-center;
+        @apply --exmg-paper-sidemenu-menu-footer;
       }
 
       .menu-footer paper-icon-button {
         transition: transform .3s ease;
         transform: rotate(0deg);
-        @apply(--layout-end-justified);
+        @apply --layout-end-justified;
       }
 
       .menu-footer paper-icon-button {
         margin: 0 4px;
-        color: #747574;
+        color: var(--exmg-paper-sidemenu-icon-color, rgba(0, 0, 0, var(--dark-secondary-opacity)));
       }
 
       :host([narrow]) .menu-footer {
@@ -168,9 +173,9 @@ Grouping menu items will be done in the following structure:
       }
 
       :host([collapsed]) .menu-footer {
-        @apply(--layout);
-        @apply(--layout-center-justified);
-        @apply(--layout-center);
+        @apply --layout;
+        @apply --layout-center-justified;
+        @apply --layout-center;
       }
 
       :host([collapsed]) paper-item iron-icon { padding: 0; }
@@ -199,12 +204,13 @@ Grouping menu items will be done in the following structure:
         display: inline-block;
         font-size: 11px;
         border-radius: 12px;
-        background-color: #46B614;
-        color: #fff;
+        background-color: var(--exmg-paper-sidemenu-badge-background-color, var(--secondary-text-color));
+        color: var(--exmg-paper-sidemenu-badge-text-color, white);
         line-height: 1;
         padding: 2px 4px;
         min-width: 16px;
         text-align: center;
+        @apply --exmg-paper-sidemenu-badge;
       }
 
       .icon-badge {
@@ -219,11 +225,11 @@ Grouping menu items will be done in the following structure:
       }
 
       a:hover paper-item {
-        background: rgba(100,100,100,.1);
+        background: var(--exmg-paper-sidemenu-hover-background-color, var(--paper-grey-200));
       }
 
       a[aria-selected] paper-item {
-        color: #0099E9;
+        color: var(--exmg-paper-sidemenu-selected-text-color, var(--primary-color));
       }
 
     </style>

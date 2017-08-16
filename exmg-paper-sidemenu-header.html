@@ -47,8 +47,9 @@ not change layout mode when menu is collapsing.
         padding: 0 20px;
         font-size: 14px;
         font-weight: 500;
-        color: #747574;
+        color: var(--exmg-paper-sidemenu-group-text-color, rgba(0, 0, 0, var(--dark-secondary-opacity)));
         cursor: pointer;
+        @apply --exmg-paper-sidemenu-header-item;
       }
 
       paper-item iron-icon {
@@ -64,23 +65,24 @@ not change layout mode when menu is collapsing.
       }
 
       .menu-header {
-        @apply(--layout);
-        @apply(--layout-center);
+        @apply --layout;
+        @apply --layout-center;
         box-sizing: border-box;
-        background: #F9FAF9;
+        background: var(--exmg-paper-sidemenu-menu-header-background-color, #F9FAF9);
         padding: 10px 0 8px;
         min-height: 56px;
+        @apply --exmg-paper-sidemenu-header-menu;
       }
 
       .menu-header paper-listbox {
-        @apply(--layout);
+        @apply --layout;
         width: 100%;
         border: none;
         background: none;
       }
 
       .menu-header .menu-item:first-child {
-        border-right: 1px solid #ddd;
+        border-right: 1px solid var(--divider-color);
         @apply(--layout-flex);
       }
 
@@ -89,7 +91,7 @@ not change layout mode when menu is collapsing.
       }
 
       :host([collapsed]) .menu-header {
-        @apply(--layout-vertical);
+        @apply --layout-vertical;
       }
 
       :host([collapsed]) exmg-paper-tooltip {
@@ -101,7 +103,7 @@ not change layout mode when menu is collapsing.
       }
 
       :host([collapsed]) .menu-header paper-listbox {
-        @apply(--layout-vertical);
+        @apply --layout-vertical;
         border-right: none;
         border-bottom: none;
         padding: 5px 0;
@@ -117,11 +119,11 @@ not change layout mode when menu is collapsing.
       }
 
       a:hover paper-item {
-        background: rgba(100,100,100,.1);
+        background: var(--exmg-paper-sidemenu-hover-background-color, var(--paper-grey-200));
       }
 
       a[aria-selected] paper-item {
-        color: #0099E9;
+        color: var(--exmg-paper-sidemenu-selected-text-color, var(--primary-color));
       }
 
       .menu-item {
