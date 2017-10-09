@@ -123,6 +123,10 @@ Grouping menu items will be done in the following structure:
         @apply --exmg-paper-sidemenu-item-title;
       }
 
+      :host([collapsed]) paper-item .title {
+        opacity: 0;
+      }
+
       paper-item iron-icon {
         padding-right: 12px;
         width: 24px;
