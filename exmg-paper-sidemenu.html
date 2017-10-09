@@ -125,6 +125,7 @@ Grouping menu items will be done in the following structure:
 
       :host([collapsed]) paper-item .title {
         opacity: 0;
+        max-width: 0px;
       }
 
       paper-item iron-icon {
@@ -132,6 +133,7 @@ Grouping menu items will be done in the following structure:
         width: 24px;
         max-width: 24px;
         height: 20px;
+        margin: 0 auto;
       }
 
       exmg-paper-tooltip {
@@ -220,7 +222,7 @@ Grouping menu items will be done in the following structure:
       .icon-badge {
         display: none;
         position: absolute;
-        left: 35px;
+        left: calc(50% + 4px);
         top: 0px;
       }
 
