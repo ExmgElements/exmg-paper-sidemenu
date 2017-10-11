@@ -141,12 +141,6 @@ Grouping menu items will be done in the following structure:
         white-space: nowrap;
       }
 
-      .menu-header {
-        border-bottom: 1px solid #ddd;
-        min-height: 56px;
-        @apply --exmg-paper-sidemenu-menu-header;
-      }
-
       .menu-body {
         @apply(--layout-flex);
         overflow: auto;
@@ -241,9 +235,7 @@ Grouping menu items will be done in the following structure:
     </style>
 
     <!-- Sidemenu Header -->
-    <div class="menu-header">
-      <slot name="header"></slot>
-    </div>
+    <slot name="header"></slot>
 
     <!-- Sidemenu body -->
     <div class="menu-body" role="navigation">
