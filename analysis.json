@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "elements": [
     {
-      "description": "`exmg-paper-sidemenu` displays a vertical sidemenu that can be collapsed.\n\n### Menu data model\nMenu items need to have the following structure:\n```js\n{\n  \"path\": \"user/\", // Path for href and selection\n  \"icon\": \"dev-icons:people\", // Icon that needs to be pre-loaded\n  \"title\": \"Users\" // Copy to display\n}\n```\n\nGrouping menu items will be done in the following structure:\n```js\n{\n  \"title\": \"Users\",\n  \"items\": [\n    {\n      \"path\": \"user/\",\n      \"icon\": \"dev-icons:people\",\n      \"title\": \"Users\"\n    },\n    {\n      \"path\": \"redeem/\",\n      \"icon\": \"dev-icons:attach-money\",\n      \"title\": \"Redeem Requests\"\n    },\n    {\n      \"path\": \"reporteduser/\",\n      \"icon\": \"dev-icons:feedback\",\n      \"title\": \"Reported Users\"\n    }\n  ]\n}\n```",
+      "description": "`exmg-paper-sidemenu` displays a vertical sidemenu that can be collapsed.\n\n### Menu data model\nMenu items need to have the following structure:\n```js\n{\n  \"path\": \"user/\", // Path for href and selection\n  \"icon\": \"dev-icons:people\", // Icon that needs to be pre-loaded\n  \"title\": \"Users\" // Copy to display\n}\n```\n\nGrouping menu items will be done in the following structure:\n```js\n{\n  \"title\": \"Users\",\n  \"items\": [\n    {\n      \"path\": \"user/\",\n      \"icon\": \"dev-icons:people\",\n      \"title\": \"Users\"\n    },\n    {\n      \"path\": \"redeem/\",\n      \"icon\": \"dev-icons:attach-money\",\n      \"title\": \"Redeem Requests\"\n    },\n    {\n      \"path\": \"reporteduser/\",\n      \"icon\": \"dev-icons:feedback\",\n      \"title\": \"Reported Users\"\n    }\n  ]\n}\n```\n\n### Styling\n\n`<exmg-paper-sidemenu>` provides the following custom properties and mixins\nfor styling:\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--exmg-paper-sidemenu` | Sidemenu mixin |`{}`\n`--exmg-paper-sidemenu-background` | Sidemenu background color | `white`\n`--exmg-paper-sidemenu-group-text-color` | Group titletext color | `54% black`\n`--exmg-paper-sidemenu-group-title` | Group title mixin | `{}`\n`--exmg-paper-sidemenu-item-text-color` | Item text color | `54% black`\n`--exmg-paper-sidemenu-item` | Menu item mixin | `{}`\n`--exmg-paper-sidemenu-item-title` | Menu item title mixin | `{}`\n`--exmg-paper-sidemenu-menu-body` | Menu body mixin | `{}`\n`--exmg-paper-sidemenu-menu-footer-background-color` | Footer background color | `#F9FAF9`\n`--exmg-paper-sidemenu-menu-footer` | Menu footer mixin | `{}`\n`--exmg-paper-sidemenu-icon-color` | Sidemenu icon color | `54% black`\n`--exmg-paper-sidemenu-badge-background-color` | Item badge background color | `--secondary-text-color`\n`--exmg-paper-sidemenu-badge-text-color` | Item badge text color | white\n`--exmg-paper-sidemenu-badge` | Item badge mixin | `{}`\n`--exmg-paper-sidemenu-hover-background-color` | Item hover background color | `--paper-grey-200`\n`--exmg-paper-sidemenu-selected-text-color` | Item selected text color | `--primary-color`",
       "summary": "",
       "path": "exmg-paper-sidemenu.html",
       "properties": [
@@ -772,11 +772,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 289,
+              "line": 314,
               "column": 10
             },
             "end": {
-              "line": 292,
+              "line": 317,
               "column": 11
             }
           },
@@ -792,11 +792,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 296,
+              "line": 321,
               "column": 10
             },
             "end": {
-              "line": 299,
+              "line": 324,
               "column": 11
             }
           },
@@ -813,11 +813,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 303,
+              "line": 328,
               "column": 10
             },
             "end": {
-              "line": 305,
+              "line": 330,
               "column": 11
             }
           },
@@ -828,15 +828,15 @@
         {
           "name": "collapsed",
           "type": "boolean",
-          "description": "",
+          "description": "Property that determines the element display style collapsed of expanded",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 306,
+              "line": 334,
               "column": 10
             },
             "end": {
-              "line": 311,
+              "line": 339,
               "column": 11
             }
           },
@@ -850,15 +850,15 @@
         {
           "name": "narrow",
           "type": "boolean",
-          "description": "",
+          "description": "The narrow option can be used to disable collapsing of the menu.",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 312,
+              "line": 343,
               "column": 10
             },
             "end": {
-              "line": 315,
+              "line": 346,
               "column": 11
             }
           },
@@ -2776,11 +2776,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 323,
+              "line": 354,
               "column": 6
             },
             "end": {
-              "line": 327,
+              "line": 358,
               "column": 7
             }
           },
@@ -2797,11 +2797,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 328,
+              "line": 359,
               "column": 6
             },
             "end": {
-              "line": 330,
+              "line": 361,
               "column": 7
             }
           },
@@ -2818,11 +2818,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 331,
+              "line": 362,
               "column": 6
             },
             "end": {
-              "line": 333,
+              "line": 364,
               "column": 7
             }
           },
@@ -2839,11 +2839,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 334,
+              "line": 365,
               "column": 6
             },
             "end": {
-              "line": 336,
+              "line": 367,
               "column": 7
             }
           },
@@ -2860,11 +2860,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 337,
+              "line": 368,
               "column": 6
             },
             "end": {
-              "line": 339,
+              "line": 370,
               "column": 7
             }
           },
@@ -2881,11 +2881,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 340,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 342,
+              "line": 373,
               "column": 7
             }
           },
@@ -3671,11 +3671,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 282,
+          "line": 307,
           "column": 4
         },
         "end": {
-          "line": 343,
+          "line": 374,
           "column": 5
         }
       },
@@ -3688,11 +3688,11 @@
           "description": "Disables actual href links",
           "sourceRange": {
             "start": {
-              "line": 289,
+              "line": 314,
               "column": 10
             },
             "end": {
-              "line": 292,
+              "line": 317,
               "column": 11
             }
           },
@@ -3704,11 +3704,11 @@
           "description": "For selection you can use the path value",
           "sourceRange": {
             "start": {
-              "line": 296,
+              "line": 321,
               "column": 10
             },
             "end": {
-              "line": 299,
+              "line": 324,
               "column": 11
             }
           },
@@ -3720,11 +3720,11 @@
           "description": "For selection you can use the path value",
           "sourceRange": {
             "start": {
-              "line": 303,
+              "line": 328,
               "column": 10
             },
             "end": {
-              "line": 305,
+              "line": 330,
               "column": 11
             }
           },
@@ -3733,14 +3733,14 @@
         },
         {
           "name": "collapsed",
-          "description": "",
+          "description": "Property that determines the element display style collapsed of expanded",
           "sourceRange": {
             "start": {
-              "line": 306,
+              "line": 334,
               "column": 10
             },
             "end": {
-              "line": 311,
+              "line": 339,
               "column": 11
             }
           },
@@ -3749,14 +3749,14 @@
         },
         {
           "name": "narrow",
-          "description": "",
+          "description": "The narrow option can be used to disable collapsing of the menu.",
           "sourceRange": {
             "start": {
-              "line": 312,
+              "line": 343,
               "column": 10
             },
             "end": {
-              "line": 315,
+              "line": 346,
               "column": 11
             }
           },
@@ -3789,11 +3789,11 @@
           "range": {
             "file": "exmg-paper-sidemenu.html",
             "start": {
-              "line": 237,
+              "line": 262,
               "column": 4
             },
             "end": {
-              "line": 237,
+              "line": 262,
               "column": 31
             }
           }
@@ -3802,7 +3802,7 @@
       "tagname": "exmg-paper-sidemenu"
     },
     {
-      "description": "`exmg-paper-sidemenu-header` default sidemenu header including a home and settings link.\n\n### Menu data model\nMenu items need to have the following structure:\n```html\n<exmg-paper-sidemenu menu=\"[[menu]]\" selected=\"[[selected]]\" collapsed=\"{{collapsed}}\">\n  <exmg-paper-sidemenu-header\n    slot=\"header\"\n    collapsed=\"[[collapsed]]\">\n  </exmg-paper-sidemenu-header>\n</exmg-paper-sidemenu>\n```\n\nPlease note not to forget to bind the collpapsed attribute. Otherwise the header will\nnot change layout mode when menu is collapsing.",
+      "description": "`exmg-paper-sidemenu-header` default sidemenu header including a home and settings link.\n\n### Menu data model\nMenu items need to have the following structure:\n```html\n<exmg-paper-sidemenu menu=\"[[menu]]\" selected=\"[[selected]]\" collapsed=\"{{collapsed}}\">\n  <exmg-paper-sidemenu-header\n    slot=\"header\"\n    collapsed=\"[[collapsed]]\">\n  </exmg-paper-sidemenu-header>\n</exmg-paper-sidemenu>\n```\n\nPlease note not to forget to bind the collpapsed attribute. Otherwise the header will\nnot change layout mode when menu is collapsing.\n\n### Styling\n\n`<exmg-paper-sidemenu-header>` provides the following custom properties and mixins\nfor styling:\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--exmg-paper-sidemenu-group-text-color` | Item text color | `54% black`\n`--exmg-paper-sidemenu-header-item` | Header item mixin | `{}`\n`--exmg-paper-sidemenu-menu-header-background-color` | Header background color | `#F9FAF9`\n`--exmg-paper-sidemenu-header-menu` | Menu header mixin | `{}`\n`--exmg-paper-sidemenu-hover-background-color` | Item hiover background color | `--paper-grey-200`\n`--exmg-paper-sidemenu-selected-text-color` | Selected item text color | `--primary-color`",
       "summary": "",
       "path": "exmg-paper-sidemenu-header.html",
       "properties": [
@@ -4572,11 +4572,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 162,
+              "line": 176,
               "column": 10
             },
             "end": {
-              "line": 165,
+              "line": 179,
               "column": 11
             }
           },
@@ -4592,11 +4592,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 169,
+              "line": 183,
               "column": 10
             },
             "end": {
-              "line": 172,
+              "line": 186,
               "column": 11
             }
           },
@@ -4613,11 +4613,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 176,
+              "line": 190,
               "column": 10
             },
             "end": {
-              "line": 179,
+              "line": 193,
               "column": 11
             }
           },
@@ -4633,11 +4633,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 184,
+              "line": 198,
               "column": 10
             },
             "end": {
-              "line": 187,
+              "line": 201,
               "column": 11
             }
           },
@@ -4647,17 +4647,37 @@
           "defaultValue": "\"exmg-paper-sidemenu-icons:dashboard\""
         },
         {
+          "name": "homeUrl",
+          "type": "string",
+          "description": "Url to home/landings page",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 205,
+              "column": 10
+            },
+            "end": {
+              "line": 208,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"/\""
+        },
+        {
           "name": "settingsLabel",
           "type": "string",
           "description": "Label for link to settings page. Default is 'Settings'",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 191,
+              "line": 212,
               "column": 10
             },
             "end": {
-              "line": 194,
+              "line": 215,
               "column": 11
             }
           },
@@ -4667,17 +4687,37 @@
           "defaultValue": "\"Settings\""
         },
         {
+          "name": "settingsUrl",
+          "type": "string",
+          "description": "Url to settings section",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 219,
+              "column": 10
+            },
+            "end": {
+              "line": 222,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"settings/\""
+        },
+        {
           "name": "settingsIcon",
           "type": "string",
           "description": "Settings icon. Default will use the settins icon from the\nexmg-paper-sidemenu-icons set.",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 199,
+              "line": 227,
               "column": 10
             },
             "end": {
-              "line": 202,
+              "line": 230,
               "column": 11
             }
           },
@@ -4689,15 +4729,15 @@
         {
           "name": "collapsed",
           "type": "boolean",
-          "description": "",
+          "description": "Property that determines the element display style collapsed of expanded",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 203,
+              "line": 235,
               "column": 10
             },
             "end": {
-              "line": 208,
+              "line": 240,
               "column": 11
             }
           },
@@ -6613,15 +6653,15 @@
         },
         {
           "name": "_getHref",
-          "description": "",
+          "description": "Disable links in debug mode",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 211,
+              "line": 246,
               "column": 6
             },
             "end": {
-              "line": 213,
+              "line": 248,
               "column": 7
             }
           },
@@ -7406,11 +7446,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 155,
+          "line": 169,
           "column": 4
         },
         "end": {
-          "line": 214,
+          "line": 249,
           "column": 5
         }
       },
@@ -7423,11 +7463,11 @@
           "description": "Disables actual href links",
           "sourceRange": {
             "start": {
-              "line": 162,
+              "line": 176,
               "column": 10
             },
             "end": {
-              "line": 165,
+              "line": 179,
               "column": 11
             }
           },
@@ -7439,11 +7479,11 @@
           "description": "For selection you can use the path value",
           "sourceRange": {
             "start": {
-              "line": 169,
+              "line": 183,
               "column": 10
             },
             "end": {
-              "line": 172,
+              "line": 186,
               "column": 11
             }
           },
@@ -7455,11 +7495,11 @@
           "description": "Label for link to home/dashboard. Default is 'Dashboard'",
           "sourceRange": {
             "start": {
-              "line": 176,
+              "line": 190,
               "column": 10
             },
             "end": {
-              "line": 179,
+              "line": 193,
               "column": 11
             }
           },
@@ -7471,11 +7511,27 @@
           "description": "Home icon. Default will use the dashboard icon from the\nexmg-paper-sidemenu-icons set.",
           "sourceRange": {
             "start": {
-              "line": 184,
+              "line": 198,
               "column": 10
             },
             "end": {
-              "line": 187,
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "home-url",
+          "description": "Url to home/landings page",
+          "sourceRange": {
+            "start": {
+              "line": 205,
+              "column": 10
+            },
+            "end": {
+              "line": 208,
               "column": 11
             }
           },
@@ -7487,11 +7543,27 @@
           "description": "Label for link to settings page. Default is 'Settings'",
           "sourceRange": {
             "start": {
-              "line": 191,
+              "line": 212,
               "column": 10
             },
             "end": {
-              "line": 194,
+              "line": 215,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "settings-url",
+          "description": "Url to settings section",
+          "sourceRange": {
+            "start": {
+              "line": 219,
+              "column": 10
+            },
+            "end": {
+              "line": 222,
               "column": 11
             }
           },
@@ -7503,11 +7575,11 @@
           "description": "Settings icon. Default will use the settins icon from the\nexmg-paper-sidemenu-icons set.",
           "sourceRange": {
             "start": {
-              "line": 199,
+              "line": 227,
               "column": 10
             },
             "end": {
-              "line": 202,
+              "line": 230,
               "column": 11
             }
           },
@@ -7516,14 +7588,14 @@
         },
         {
           "name": "collapsed",
-          "description": "",
+          "description": "Property that determines the element display style collapsed of expanded",
           "sourceRange": {
             "start": {
-              "line": 203,
+              "line": 235,
               "column": 10
             },
             "end": {
-              "line": 208,
+              "line": 240,
               "column": 11
             }
           },

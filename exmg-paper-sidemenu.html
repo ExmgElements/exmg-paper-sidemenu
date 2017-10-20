@@ -43,6 +43,31 @@ Grouping menu items will be done in the following structure:
   ]
 }
 ```
+
+### Styling
+
+`<exmg-paper-sidemenu>` provides the following custom properties and mixins
+for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--exmg-paper-sidemenu` | Sidemenu mixin |`{}`
+`--exmg-paper-sidemenu-background` | Sidemenu background color | `white`
+`--exmg-paper-sidemenu-group-text-color` | Group titletext color | `54% black`
+`--exmg-paper-sidemenu-group-title` | Group title mixin | `{}`
+`--exmg-paper-sidemenu-item-text-color` | Item text color | `54% black`
+`--exmg-paper-sidemenu-item` | Menu item mixin | `{}`
+`--exmg-paper-sidemenu-item-title` | Menu item title mixin | `{}`
+`--exmg-paper-sidemenu-menu-body` | Menu body mixin | `{}`
+`--exmg-paper-sidemenu-menu-footer-background-color` | Footer background color | `#F9FAF9`
+`--exmg-paper-sidemenu-menu-footer` | Menu footer mixin | `{}`
+`--exmg-paper-sidemenu-icon-color` | Sidemenu icon color | `54% black`
+`--exmg-paper-sidemenu-badge-background-color` | Item badge background color | `--secondary-text-color`
+`--exmg-paper-sidemenu-badge-text-color` | Item badge text color | white
+`--exmg-paper-sidemenu-badge` | Item badge mixin | `{}`
+`--exmg-paper-sidemenu-hover-background-color` | Item hover background color | `--paper-grey-200`
+`--exmg-paper-sidemenu-selected-text-color` | Item selected text color | `--primary-color`
+
 @customElement
 @polymer
 @group Exmg Paper Elements
@@ -275,7 +300,7 @@ Grouping menu items will be done in the following structure:
 
     <!-- Sidemenu Footer -->
     <div class="menu-footer">
-      <paper-icon-button id="mode-button" icon="exmg-paper-sidemenu-icons:chevron-left" on-tap="_handleCollapse"></paper-icon-button>
+      <paper-icon-button icon="exmg-paper-sidemenu-icons:chevron-left" on-tap="_handleCollapse"></paper-icon-button>
     </div>
   </template>
 
@@ -304,12 +329,18 @@ Grouping menu items will be done in the following structure:
           menu: {
             type: Array,
           },
+          /*
+          * Property that determines the element display style collapsed of expanded
+          */
           collapsed: {
             type: Boolean,
             notify: true,
             reflectToAttribute: true,
             value: false,
           },
+          /*
+          * The narrow option can be used to disable collapsing of the menu.
+          */
           narrow: {
             type: Boolean,
             value: false,
