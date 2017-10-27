@@ -7,73 +7,6 @@
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="exmg-paper-sidemenu-icons.html">
 
-<!--
-`exmg-paper-sidemenu` displays a vertical sidemenu that can be collapsed.
-
-### Menu data model
-Menu items need to have the following structure:
-```js
-{
-  "path": "user/", // Path for href and selection
-  "icon": "dev-icons:people", // Icon that needs to be pre-loaded
-  "title": "Users" // Copy to display
-}
-```
-
-Grouping menu items will be done in the following structure:
-```js
-{
-  "title": "Users",
-  "items": [
-    {
-      "path": "user/",
-      "icon": "dev-icons:people",
-      "title": "Users"
-    },
-    {
-      "path": "redeem/",
-      "icon": "dev-icons:attach-money",
-      "title": "Redeem Requests"
-    },
-    {
-      "path": "reporteduser/",
-      "icon": "dev-icons:feedback",
-      "title": "Reported Users"
-    }
-  ]
-}
-```
-
-### Styling
-
-`<exmg-paper-sidemenu>` provides the following custom properties and mixins
-for styling:
-
-Custom property | Description | Default
-----------------|-------------|----------
-`--exmg-paper-sidemenu` | Sidemenu mixin |`{}`
-`--exmg-paper-sidemenu-background` | Sidemenu background color | `white`
-`--exmg-paper-sidemenu-group-text-color` | Group titletext color | `54% black`
-`--exmg-paper-sidemenu-group-title` | Group title mixin | `{}`
-`--exmg-paper-sidemenu-item-text-color` | Item text color | `54% black`
-`--exmg-paper-sidemenu-item` | Menu item mixin | `{}`
-`--exmg-paper-sidemenu-item-title` | Menu item title mixin | `{}`
-`--exmg-paper-sidemenu-menu-body` | Menu body mixin | `{}`
-`--exmg-paper-sidemenu-menu-footer-background-color` | Footer background color | `#F9FAF9`
-`--exmg-paper-sidemenu-menu-footer` | Menu footer mixin | `{}`
-`--exmg-paper-sidemenu-icon-color` | Sidemenu icon color | `54% black`
-`--exmg-paper-sidemenu-badge-background-color` | Item badge background color | `--secondary-text-color`
-`--exmg-paper-sidemenu-badge-text-color` | Item badge text color | white
-`--exmg-paper-sidemenu-badge` | Item badge mixin | `{}`
-`--exmg-paper-sidemenu-hover-background-color` | Item hover background color | `--paper-grey-200`
-`--exmg-paper-sidemenu-selected-text-color` | Item selected text color | `--primary-color`
-
-@customElement
-@polymer
-@group Exmg Paper Elements
-@element exmg-paper-sidemenu
-@demo demo/index.html
--->
 <dom-module id="exmg-paper-sidemenu">
   <template>
     <style>
@@ -305,7 +238,77 @@ Custom property | Description | Default
   </template>
 
   <script>
-    class ExmgCmsSidemenu extends Polymer.Element {
+  'use strict';
+  {
+    /**
+     * The `exmg-paper-sidemenu` displays a vertical sidemenu that can be collapsed.
+     *
+     *  ### Menu data model
+     *  Menu items need to have the following structure:
+     *  ```js
+     *  {
+     *    "path": "user/", // Path for href and selection
+     *    "icon": "dev-icons:people", // Icon that needs to be pre-loaded
+     *    "title": "Users" // Copy to display
+     *  }
+     *  ```
+     *
+     *  Grouping menu items will be done in the following structure:
+     *  ```js
+     *  {
+     *    "title": "Users",
+     *    "items": [
+     *      {
+     *        "path": "user/",
+     *        "icon": "dev-icons:people",
+     *        "title": "Users"
+     *      },
+     *      {
+     *        "path": "redeem/",
+     *        "icon": "dev-icons:attach-money",
+     *        "title": "Redeem Requests"
+     *      },
+     *      {
+     *        "path": "reporteduser/",
+     *        "icon": "dev-icons:feedback",
+     *        "title": "Reported Users"
+     *      }
+     *    ]
+     *  }
+     *  ```
+     *
+     *  ### Styling
+     *
+     * `<exmg-paper-sidemenu>` provides the following custom properties and mixins
+     *  for styling:
+     *
+     *  Custom property | Description | Default
+     *  ----------------|-------------|----------
+     *  `--exmg-paper-sidemenu` | Sidemenu mixin |`{}`
+     *  `--exmg-paper-sidemenu-background` | Sidemenu background color | `white`
+     *  `--exmg-paper-sidemenu-group-text-color` | Group titletext color | `54% black`
+     *  `--exmg-paper-sidemenu-group-title` | Group title mixin | `{}`
+     *  `--exmg-paper-sidemenu-item-text-color` | Item text color | `54% black`
+     *  `--exmg-paper-sidemenu-item` | Menu item mixin | `{}`
+     *  `--exmg-paper-sidemenu-item-title` | Menu item title mixin | `{}`
+     *  `--exmg-paper-sidemenu-menu-body` | Menu body mixin | `{}`
+     *  `--exmg-paper-sidemenu-menu-footer-background-color` | Footer background color | `#F9FAF9`
+     *  `--exmg-paper-sidemenu-menu-footer` | Menu footer mixin | `{}`
+     *  `--exmg-paper-sidemenu-icon-color` | Sidemenu icon color | `54% black`
+     *  `--exmg-paper-sidemenu-badge-background-color` | Item badge background color | `--secondary-text-color`
+     *  `--exmg-paper-sidemenu-badge-text-color` | Item badge text color | white
+     *  `--exmg-paper-sidemenu-badge` | Item badge mixin | `{}`
+     *  `--exmg-paper-sidemenu-hover-background-color` | Item hover background color | `--paper-grey-200`
+     *  `--exmg-paper-sidemenu-selected-text-color` | Item selected text color | `--primary-color`
+     *
+     *  @customElement
+     *  @polymer
+     *  @memberof Exmg
+     *  @group Exmg Paper Elements
+     *  @element exmg-paper-sidemenu
+     *  @demo demo/index.html
+     */
+    class SidemenuElement extends Polymer.Element {
       static get is() { return 'exmg-paper-sidemenu'; }
       static get properties() {
         return {
@@ -374,6 +377,13 @@ Custom property | Description | Default
       }
     }
 
-    window.customElements.define(ExmgCmsSidemenu.is, ExmgCmsSidemenu);
+    window.customElements.define(SidemenuElement.is, SidemenuElement);
+
+    /**
+     * @namespace Exmg
+     */
+    window.Exmg = window.Exmg || {};
+    Exmg.SidemenuElement = SidemenuElement;
+  }
   </script>
 </dom-module>

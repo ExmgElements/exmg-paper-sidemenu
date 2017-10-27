@@ -6,42 +6,6 @@
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="exmg-paper-sidemenu-icons.html">
 
-<!--
-`exmg-paper-sidemenu-header` default sidemenu header including a home and settings link.
-
-### Menu data model
-Menu items need to have the following structure:
-```html
-<exmg-paper-sidemenu menu="[[menu]]" selected="[[selected]]" collapsed="{{collapsed}}">
-  <exmg-paper-sidemenu-header
-    slot="header"
-    collapsed="[[collapsed]]">
-  </exmg-paper-sidemenu-header>
-</exmg-paper-sidemenu>
-```
-
-Please note not to forget to bind the collpapsed attribute. Otherwise the header will
-not change layout mode when menu is collapsing.
-
-### Styling
-
-`<exmg-paper-sidemenu-header>` provides the following custom properties and mixins
-for styling:
-
-Custom property | Description | Default
-----------------|-------------|----------
-`--exmg-paper-sidemenu-group-text-color` | Item text color | `54% black`
-`--exmg-paper-sidemenu-header-item` | Header item mixin | `{}`
-`--exmg-paper-sidemenu-menu-header-background-color` | Header background color | `#F9FAF9`
-`--exmg-paper-sidemenu-header-menu` | Menu header mixin | `{}`
-`--exmg-paper-sidemenu-hover-background-color` | Item hiover background color | `--paper-grey-200`
-`--exmg-paper-sidemenu-selected-text-color` | Selected item text color | `--primary-color`
-
-@customElement
-@polymer
-@group Exmg Paper Elements
-@element exmg-paper-sidemenu
--->
 <dom-module id="exmg-paper-sidemenu-header">
   <template>
     <style>
@@ -167,7 +131,46 @@ Custom property | Description | Default
   </template>
 
   <script>
-    class ExmgCmsSidemenuHeader extends Polymer.Element {
+  'use strict';
+  {
+    /**
+    * `exmg-paper-sidemenu-header` default sidemenu header including a home and settings link.
+    *
+    * ### Menu data model
+    * Menu items need to have the following structure:
+    * ```html
+    * <exmg-paper-sidemenu menu="[[menu]]" selected="[[selected]]" collapsed="{{collapsed}}">
+    *   <exmg-paper-sidemenu-header
+    *     slot="header"
+    *     collapsed="[[collapsed]]">
+    *   </exmg-paper-sidemenu-header>
+    * </exmg-paper-sidemenu>
+    * ```
+    *
+    * Please note not to forget to bind the collpapsed attribute. Otherwise the header will
+    * not change layout mode when menu is collapsing.
+    *
+    * ### Styling
+    *
+    * `<exmg-paper-sidemenu-header>` provides the following custom properties and mixins
+    * for styling:
+    *
+    * Custom property | Description | Default
+    * ----------------|-------------|----------
+    * `--exmg-paper-sidemenu-group-text-color` | Item text color | `54% black`
+    * `--exmg-paper-sidemenu-header-item` | Header item mixin | `{}`
+    * `--exmg-paper-sidemenu-menu-header-background-color` | Header background color | `#F9FAF9`
+    * `--exmg-paper-sidemenu-header-menu` | Menu header mixin | `{}`
+    * `--exmg-paper-sidemenu-hover-background-color` | Item hiover background color | `--paper-grey-200`
+    * `--exmg-paper-sidemenu-selected-text-color` | Selected item text color | `--primary-color`
+    *
+    * @customElement
+    * @polymer
+    *  @memberof Exmg
+    * @group Exmg Paper Elements
+    * @element exmg-paper-sidemenu-header
+    */
+    class CmsSidemenuHeader extends Polymer.Element {
       static get is() { return 'exmg-paper-sidemenu-header'; }
       static get properties() {
         return {
@@ -249,6 +252,13 @@ Custom property | Description | Default
       }
     }
 
-    window.customElements.define(ExmgCmsSidemenuHeader.is, ExmgCmsSidemenuHeader);
+    window.customElements.define(CmsSidemenuHeader.is, CmsSidemenuHeader);
+
+    /**
+     * @namespace Exmg
+     */
+    window.Exmg = window.Exmg || {};
+    Exmg.CmsSidemenuHeader = CmsSidemenuHeader;
+  }
   </script>
 </dom-module>

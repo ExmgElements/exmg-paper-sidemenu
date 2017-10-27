@@ -1,0 +1,29 @@
+{
+  "name": "exmg-paper-sidemenu",
+  "private": true,
+  "description": "Paper style collapsible sidemenu",
+  "main": "exmg-paper-sidemenu.html",
+  "repository": "ExmgElements/exmg-paper-sidemenu",
+  "keywords": [
+    "Exmg",
+    "ExmgElements",
+    "exmg-paper-sidemenu",
+    "web-components",
+    "web-component",
+    "polymer"
+  ],
+  "author": "Vaadin Ltd",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "bower": "latest",
+    "eslint": "^4.0.0",
+    "eslint-plugin-html": "^3.0.0",
+    "polymer-cli": "^1.2.0"
+  },
+  "homepage": "https://github.com/ExmgElements/",
+  "scripts": {
+    "lint": "polymer lint --rules polymer-2 --input *.html",
+    "eslint": "eslint . --ext js,html --ignore-path .gitignore",
+    "analyse": "polymer analyze --input exmg-paper-sidemenu.html exmg-paper-sidemenu-header.html > analysis.json"
+  }
+}
