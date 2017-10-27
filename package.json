@@ -13,7 +13,6 @@
     "polymer"
   ],
   "author": "Ex Machina",
-  "license": "Apache-2.0",
   "devDependencies": {
     "bower": "latest",
     "eslint": "^4.0.0",
@@ -24,6 +23,6 @@
   "scripts": {
     "lint": "polymer lint --rules polymer-2 --input *.html",
     "eslint": "eslint . --ext js,html --ignore-path .gitignore",
-    "analyse": "polymer analyze --input exmg-paper-sidemenu.html exmg-paper-sidemenu-header.html > analysis.json"
+    "analyze": "polymer analyze --input exmg-paper-sidemenu.html exmg-paper-sidemenu-header.html > analysis.json"
   }
 }
