@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <title>exmg-paper-sidemenu demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-ajax/iron-ajax.html">
+
+    <link rel="import" href="../../paper-styles/typography.html">
+    <link rel="import" href="../../paper-styles/color.html">
+    <link rel="import" href="../../iron-media-query/iron-media-query.html">
+
+    <link rel="import" href="dev-icons.html">
+    <link rel="import" href="../exmg-paper-sidemenu.html">
+
+    <custom-style>
+      <style is="custom-style">
+        body {
+          @apply --paper-font-common-base;
+          font-size: 14px;
+          margin: 0;
+          padding: 0;
+          background-color: var(--paper-blue-grey-50);
+        }
+
+        body, html, x-demo {
+          height: 100%;
+        }
+
+        x-demo {
+          box-sizing: border-box;
+          box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+          z-index: 11;
+        }
+
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <dom-module id="x-demo">
+        <template>
+          <style>
+            :host{
+              display: inline-block;
+              height: 100%;
+              overflow: auto;
+              background-color: white;
+            }
+
+            exmg-paper-sidemenu {
+              width: 256px;
+            }
+
+            exmg-paper-sidemenu[collapsed] {
+              width: 64px;
+            }
+            exmg-paper-sidemenu[collapsed] paper-item iron-icon {
+              padding: 0;
+            }
+
+          </style>
+
+          <iron-media-query query="(min-width: 500px)" query-matches="{{full}}"></iron-media-query>
+
+          <!-- Menu  -->
+          <exmg-paper-sidemenu menu="[[menu]]" selected="rooms/" narrow$="[[!full]]" debug></exmg-paper-sidemenu>
+
+          <!-- Load menu from json file  -->
+          <iron-ajax url="data/menu.json" last-response="{{menu}}" auto></iron-ajax>
+
+        </template>
+        <script>
+        window.addEventListener('WebComponentsReady', function() {
+          class XDemo extends Polymer.Element {
+            static get is() { return 'x-demo'; }
+            static get properties() {
+              return {
+                menu: {
+                  type: Array,
+                },
+              };
+            }
+          }
+          window.customElements.define(XDemo.is, XDemo);
+        });
+        </script>
+      </dom-module>
+
+      <x-demo></x-demo>
+
+  </body>
+</html>
