@@ -309,7 +309,9 @@
      *  @demo demo/index.html
      */
     class SidemenuElement extends Polymer.Element {
-      static get is() { return 'exmg-paper-sidemenu'; }
+      static get is() {
+        return 'exmg-paper-sidemenu';
+      }
       static get properties() {
         return {
           /*
@@ -356,7 +358,7 @@
         ];
       }
       _observeNarrow(narrow) {
-        if(narrow && this.collapsed) {
+        if (narrow && this.collapsed) {
           this.set('collapsed', false);
         }
       }
