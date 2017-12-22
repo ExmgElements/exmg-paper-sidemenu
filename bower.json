@@ -17,6 +17,7 @@
     "type": "git",
     "url": "git@bitbucket.org:ExmgElements/exmg-paper-sidemenu.git"
   },
+  "license": "MIT License",
   "dependencies": {
     "paper-listbox": "PolymerElements/paper-listbox#^2.0.0",
     "paper-item": "PolymerElements/paper-item#^2.0.0",
