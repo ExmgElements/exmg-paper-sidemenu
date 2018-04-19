@@ -18,9 +18,9 @@
       }
 
       paper-item {
-        height: 32px;
-        min-height: auto;
+        height: 56px;
         box-sizing: border-box;
+        line-height: 56px;
         padding: 0 20px;
         font-size: 14px;
         font-weight: 500;
@@ -29,11 +29,16 @@
         @apply --exmg-paper-sidemenu-header-item;
       }
 
+      paper-item:last-child {
+        padding: 0 8px;
+      }
+
       paper-item iron-icon {
         padding-right: 12px;
         width: 24px;
         max-width: 24px;
         height: 20px;
+        @apply --exmg-paper-sidemenu-header-item-icon;
       }
 
       exmg-paper-tooltip {
@@ -46,7 +51,6 @@
         @apply --layout-center;
         box-sizing: border-box;
         background: var(--exmg-paper-sidemenu-menu-header-background-color, #F9FAF9);
-        padding: 10px 0 8px;
         min-height: 56px;
         border-bottom: 1px solid #ddd;
         @apply --exmg-paper-sidemenu-header-menu;
@@ -62,6 +66,7 @@
       .menu-header .menu-item:first-child {
         border-right: 1px solid var(--divider-color);
         @apply --layout-flex;
+        @apply --exmg-paper-sidemenu-header-dashboard;
       }
 
       .menu-header .menu-item:nth-child(2) iron-icon {
@@ -69,6 +74,7 @@
       }
 
       :host([collapsed]) .menu-header {
+        padding: 10px 0 8px;
         @apply --layout-vertical;
       }
 
@@ -87,7 +93,10 @@
         padding: 5px 0;
       }
 
-      :host([collapsed]) .menu-header .menu-item {
+      :host([collapsed]) paper-item {
+        min-height: 36px;
+        line-height: 36px;
+        height: initial;
         border-right: none;
       }
       :host([collapsed]) paper-item .title {
@@ -100,6 +109,7 @@
         background: var(--exmg-paper-sidemenu-hover-background-color, var(--paper-grey-200));
       }
 
+      a[aria-selected] paper-item iron-icon,
       a[aria-selected] paper-item {
         color: var(--exmg-paper-sidemenu-selected-text-color, var(--primary-color));
       }
