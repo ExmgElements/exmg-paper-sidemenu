@@ -1,14 +1,132 @@
-<link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../paper-listbox/paper-listbox.html">
-<link rel="import" href="../paper-item/paper-item.html">
-<link rel="import" href="../exmg-paper-tooltip/exmg-paper-tooltip.html">
-<link rel="import" href="../paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="exmg-paper-sidemenu-icons.html">
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import '@polymer/paper-listbox/paper-listbox.js';
+import '@polymer/paper-item/paper-item.js';
+import '@exmg/exmg-paper-tooltip/exmg-paper-tooltip.js';
+import '@polymer/paper-icon-button/paper-icon-button.js';
+import '@polymer/iron-icon/iron-icon.js';
+import './exmg-paper-sidemenu-icons.js';
 
-<dom-module id="exmg-paper-sidemenu">
-  <template>
+
+/**
+ * The `exmg-paper-sidemenu` displays a vertical sidemenu that can be collapsed.
+ *
+ *  ### Menu data model
+ *  Menu items need to have the following structure:
+ *  ```js
+ *  {
+ *    "path": "user/", // Path for href and selection
+ *    "icon": "dev-icons:people", // Icon that needs to be pre-loaded
+ *    "title": "Users" // Copy to display
+ *  }
+ *  ```
+ *
+ *  Grouping menu items will be done in the following structure:
+ *  ```js
+ *  {
+ *    "title": "Users",
+ *    "items": [
+ *      {
+ *        "path": "user/",
+ *        "icon": "dev-icons:people",
+ *        "title": "Users"
+ *      },
+ *      {
+ *        "path": "redeem/",
+ *        "icon": "dev-icons:attach-money",
+ *        "title": "Redeem Requests"
+ *      },
+ *      {
+ *        "path": "reporteduser/",
+ *        "icon": "dev-icons:feedback",
+ *        "title": "Reported Users"
+ *      }
+ *    ]
+ *  }
+ *  ```
+ *
+ *  ### Styling
+ *
+ * `<exmg-paper-sidemenu>` provides the following custom properties and mixins
+ *  for styling:
+ *
+ *  Custom property | Description | Default
+ *  ----------------|-------------|----------
+ *  `--exmg-paper-sidemenu` | Sidemenu mixin |`{}`
+ *  `--exmg-paper-sidemenu-background` | Sidemenu background color | `white`
+ *  `--exmg-paper-sidemenu-group-text-color` | Group titletext color | `54% black`
+ *  `--exmg-paper-sidemenu-group-title` | Group title mixin | `{}`
+ *  `--exmg-paper-sidemenu-item-text-color` | Item text color | `54% black`
+ *  `--exmg-paper-sidemenu-item` | Menu item mixin | `{}`
+ *  `--exmg-paper-sidemenu-item-title` | Menu item title mixin | `{}`
+ *  `--exmg-paper-sidemenu-menu-body` | Menu body mixin | `{}`
+ *  `--exmg-paper-sidemenu-menu-footer-background-color` | Footer background color | `#F9FAF9`
+ *  `--exmg-paper-sidemenu-menu-footer` | Menu footer mixin | `{}`
+ *  `--exmg-paper-sidemenu-icon-color` | Sidemenu icon color | `54% black`
+ *  `--exmg-paper-sidemenu-badge-background-color` | Item badge background color | `--secondary-text-color`
+ *  `--exmg-paper-sidemenu-badge-text-color` | Item badge text color | white
+ *  `--exmg-paper-sidemenu-badge` | Item badge mixin | `{}`
+ *  `--exmg-paper-sidemenu-hover-background-color` | Item hover background color | `--paper-grey-200`
+ *  `--exmg-paper-sidemenu-selected-text-color` | Item selected text color | `--primary-color`
+ *
+ *  @customElement
+ *  @polymer
+ *  @memberof Exmg
+ *  @group Exmg Paper Elements
+ *  @element exmg-paper-sidemenu
+ *  @demo demo/index.html
+ */
+class SidemenuElement extends PolymerElement {
+  static get is() {
+    return 'exmg-paper-sidemenu';
+  }
+  static get properties() {
+    return {
+      /*
+      * Disables actual href links
+      */
+      debug: {
+        type: Boolean,
+        value: false,
+      },
+      /*
+      * For selection you can use the path value
+      */
+      selected: {
+        notify: true,
+        type: String,
+      },
+      /*
+      * For selection you can use the path value
+      */
+      menu: {
+        type: Array,
+      },
+      /*
+      * Property that determines the element display style collapsed of expanded
+      */
+      collapsed: {
+        type: Boolean,
+        notify: true,
+        reflectToAttribute: true,
+        value: false,
+      },
+      /*
+      * The narrow option can be used to disable collapsing of the menu.
+      */
+      narrow: {
+        type: Boolean,
+        value: false,
+      },
+    };
+  }
+  static get observers() {
+    return [
+      '_observeNarrow(narrow)',
+    ];
+  }
+  static get template() {
+    return html`
     <style>
       :host {
         height: 100%;
@@ -203,8 +321,8 @@
       <paper-listbox attr-for-selected="data-path" selected="{{selected}}" selectable="a">
         <template is="dom-repeat" items="[[menu]]" as="item">
           <template is="dom-if" if="[[!_hasItems(item)]]">
-            <a href="[[_getHref(item.path)]]" data-path$="[[item.path]]" tabindex="-1" class="menu-item solo">
-              <paper-item data-path$="[[item.path]]" role="menuitem">
+            <a href="[[_getHref(item.path)]]" data-path\$="[[item.path]]" tabindex="-1" class="menu-item solo">
+              <paper-item data-path\$="[[item.path]]" role="menuitem">
                 <iron-icon icon="[[item.icon]]"></iron-icon>
                 <span class="title">[[item.title]]</span>
               </paper-item>
@@ -214,8 +332,8 @@
           <template is="dom-if" if="[[_hasItems(item)]]">
             <div class="menu-group-title">[[item.title]]</div>
             <template is="dom-repeat" items="[[item.items]]" as="subitem">
-              <a href="[[_getHref(subitem.path)]]" data-path$="[[subitem.path]]" tabindex="-1" class="menu-item">
-                <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
+              <a href="[[_getHref(subitem.path)]]" data-path\$="[[subitem.path]]" tabindex="-1" class="menu-item">
+                <paper-item data-path\$="[[subitem.path]]" class\$="[[_hasClassBadge(subitem)]]" role="menuitem">
                   <iron-icon icon="[[subitem.icon]]"></iron-icon>
                   <template is="dom-if" if="[[subitem.badgeCount]]">
                     <span class="icon-badge">[[_computeBadgeCount(subitem)]]</span>
@@ -236,157 +354,30 @@
     <div class="menu-footer">
       <paper-icon-button icon="exmg-paper-sidemenu-icons:chevron-left" on-tap="_handleCollapse"></paper-icon-button>
     </div>
-  </template>
-
-  <script>
-  'use strict';
-  {
-    /**
-     * The `exmg-paper-sidemenu` displays a vertical sidemenu that can be collapsed.
-     *
-     *  ### Menu data model
-     *  Menu items need to have the following structure:
-     *  ```js
-     *  {
-     *    "path": "user/", // Path for href and selection
-     *    "icon": "dev-icons:people", // Icon that needs to be pre-loaded
-     *    "title": "Users" // Copy to display
-     *  }
-     *  ```
-     *
-     *  Grouping menu items will be done in the following structure:
-     *  ```js
-     *  {
-     *    "title": "Users",
-     *    "items": [
-     *      {
-     *        "path": "user/",
-     *        "icon": "dev-icons:people",
-     *        "title": "Users"
-     *      },
-     *      {
-     *        "path": "redeem/",
-     *        "icon": "dev-icons:attach-money",
-     *        "title": "Redeem Requests"
-     *      },
-     *      {
-     *        "path": "reporteduser/",
-     *        "icon": "dev-icons:feedback",
-     *        "title": "Reported Users"
-     *      }
-     *    ]
-     *  }
-     *  ```
-     *
-     *  ### Styling
-     *
-     * `<exmg-paper-sidemenu>` provides the following custom properties and mixins
-     *  for styling:
-     *
-     *  Custom property | Description | Default
-     *  ----------------|-------------|----------
-     *  `--exmg-paper-sidemenu` | Sidemenu mixin |`{}`
-     *  `--exmg-paper-sidemenu-background` | Sidemenu background color | `white`
-     *  `--exmg-paper-sidemenu-group-text-color` | Group titletext color | `54% black`
-     *  `--exmg-paper-sidemenu-group-title` | Group title mixin | `{}`
-     *  `--exmg-paper-sidemenu-item-text-color` | Item text color | `54% black`
-     *  `--exmg-paper-sidemenu-item` | Menu item mixin | `{}`
-     *  `--exmg-paper-sidemenu-item-title` | Menu item title mixin | `{}`
-     *  `--exmg-paper-sidemenu-menu-body` | Menu body mixin | `{}`
-     *  `--exmg-paper-sidemenu-menu-footer-background-color` | Footer background color | `#F9FAF9`
-     *  `--exmg-paper-sidemenu-menu-footer` | Menu footer mixin | `{}`
-     *  `--exmg-paper-sidemenu-icon-color` | Sidemenu icon color | `54% black`
-     *  `--exmg-paper-sidemenu-badge-background-color` | Item badge background color | `--secondary-text-color`
-     *  `--exmg-paper-sidemenu-badge-text-color` | Item badge text color | white
-     *  `--exmg-paper-sidemenu-badge` | Item badge mixin | `{}`
-     *  `--exmg-paper-sidemenu-hover-background-color` | Item hover background color | `--paper-grey-200`
-     *  `--exmg-paper-sidemenu-selected-text-color` | Item selected text color | `--primary-color`
-     *
-     *  @customElement
-     *  @polymer
-     *  @memberof Exmg
-     *  @group Exmg Paper Elements
-     *  @element exmg-paper-sidemenu
-     *  @demo demo/index.html
-     */
-    class SidemenuElement extends Polymer.Element {
-      static get is() {
-        return 'exmg-paper-sidemenu';
-      }
-      static get properties() {
-        return {
-          /*
-          * Disables actual href links
-          */
-          debug: {
-            type: Boolean,
-            value: false,
-          },
-          /*
-          * For selection you can use the path value
-          */
-          selected: {
-            notify: true,
-            type: String,
-          },
-          /*
-          * For selection you can use the path value
-          */
-          menu: {
-            type: Array,
-          },
-          /*
-          * Property that determines the element display style collapsed of expanded
-          */
-          collapsed: {
-            type: Boolean,
-            notify: true,
-            reflectToAttribute: true,
-            value: false,
-          },
-          /*
-          * The narrow option can be used to disable collapsing of the menu.
-          */
-          narrow: {
-            type: Boolean,
-            value: false,
-          },
-        };
-      }
-      static get observers() {
-        return [
-          '_observeNarrow(narrow)',
-        ];
-      }
-      _observeNarrow(narrow) {
-        if (narrow && this.collapsed) {
-          this.set('collapsed', false);
-        }
-      }
-      _getHref(path) {
-        return this.debug ? '#' : path;
-      }
-      _hasItems(item) {
-        return item.items;
-      }
-      _hasClassBadge(item) {
-        return item.badgeCount ? 'badge' : '';
-      }
-      _computeBadgeCount(item) {
-        return item.badgeCount > 99 ? '...' : item.badgeCount;
-      }
-      _handleCollapse() {
-        this.set('collapsed', !this.collapsed);
-      }
-    }
-
-    window.customElements.define(SidemenuElement.is, SidemenuElement);
-
-    /**
-     * @namespace Exmg
-     */
-    window.Exmg = window.Exmg || {};
-    Exmg.SidemenuElement = SidemenuElement;
+  `;
   }
-  </script>
-</dom-module>
+  _observeNarrow(narrow) {
+    if (narrow && this.collapsed) {
+      this.set('collapsed', false);
+    }
+  }
+  _getHref(path) {
+    return this.debug ? '#' : path;
+  }
+  _hasItems(item) {
+    return item.items;
+  }
+  _hasClassBadge(item) {
+    return item.badgeCount ? 'badge' : '';
+  }
+  _computeBadgeCount(item) {
+    return item.badgeCount > 99 ? '...' : item.badgeCount;
+  }
+  _handleCollapse() {
+    this.set('collapsed', !this.collapsed);
+  }
+}
+
+window.customElements.define(SidemenuElement.is, SidemenuElement);
+
+Exmg.SidemenuElement = SidemenuElement;

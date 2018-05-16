@@ -6,13 +6,13 @@
 
     <title>exmg-cms-section-admins test</title>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
-    <script src="../../test-fixture/test-fixture-mocha.js"></script>
+    <script src="@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="web-component-tester/browser.js"></script>
+    <script src="@polymer/test-fixture/test-fixture-mocha.js"></script>
 
-    <link rel="import" href="../../test-fixture/test-fixture.html">
+    <script type="module" src="@polymer/test-fixture/test-fixture.js"></script>
 
-    <link rel="import" href="../exmg-paper-sidemenu.html">
+    <script type="module" src="../exmg-paper-sidemenu.js"></script>
   </head>
   <body>
 
@@ -22,21 +22,23 @@
       </template>
     </test-fixture>
 
-    <script>
+    <script type="module">
+import '@polymer/test-fixture/test-fixture.js';
+import '../exmg-paper-sidemenu.js';
 
-      suite('exmg-paper-sidemenu', function() {
-        let el;
+suite('exmg-paper-sidemenu', function() {
+  let el;
 
-        setup(function() {
-          el = fixture('basic');
-        });
+  setup(function() {
+    el = fixture('basic');
+  });
 
-        test('instantiating the element with default properties works', function() {
-          assert.equal(el.menu.length, 0);
-        });
+  test('instantiating the element with default properties works', function() {
+    assert.equal(el.menu.length, 0);
+  });
 
-      });
-    </script>
+});
+</script>
 
   </body>
 </html>
