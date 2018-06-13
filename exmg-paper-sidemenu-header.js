@@ -7,6 +7,11 @@ import '@polymer/iron-icon/iron-icon.js';
 import './exmg-paper-sidemenu-icons.js';
 
 /**
+* @namespace Exmg
+*/
+window.Exmg = window.Exmg || {};
+
+/**
 * `exmg-paper-sidemenu-header` default sidemenu header including a home and settings link.
 *
 * ### Menu data model
@@ -243,7 +248,7 @@ class CmsSidemenuHeader extends PolymerElement {
         <exmg-paper-tooltip position="right">[[homeLabel]]</exmg-paper-tooltip>
       </a>
       <a href="[[_getHref(settingsUrl)]]" data-path="[[settingsUrl]]" tabindex="-1" class="menu-item">
-        <paper-item role="menuitem" aria-label\$="[[settingsLabel]]">
+        <paper-item role="menuitem" aria-label$="[[settingsLabel]]">
           <iron-icon icon="[[settingsIcon]]"></iron-icon>
         </paper-item>
         <exmg-paper-tooltip position="right">[[settingsLabel]]</exmg-paper-tooltip>

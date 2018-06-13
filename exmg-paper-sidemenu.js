@@ -7,6 +7,10 @@ import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/iron-icon/iron-icon.js';
 import './exmg-paper-sidemenu-icons.js';
 
+/**
+* @namespace Exmg
+*/
+window.Exmg = window.Exmg || {};
 
 /**
  * The `exmg-paper-sidemenu` displays a vertical sidemenu that can be collapsed.
@@ -110,6 +114,7 @@ class SidemenuElement extends PolymerElement {
         notify: true,
         reflectToAttribute: true,
         value: false,
+        observer: '_observeCollapsed',
       },
       /*
       * The narrow option can be used to disable collapsing of the menu.
@@ -205,6 +210,7 @@ class SidemenuElement extends PolymerElement {
         max-width: 0px;
       }
 
+      paper-item svg,
       paper-item iron-icon {
         padding-right: 12px;
         width: 24px;
@@ -255,6 +261,7 @@ class SidemenuElement extends PolymerElement {
         @apply --layout-center;
       }
 
+      :host([collapsed]) paper-item svg { padding: 0; }
       :host([collapsed]) paper-item iron-icon { padding: 0; }
       :host([collapsed]) .menu-group {
         padding: 12px 0;
@@ -305,6 +312,9 @@ class SidemenuElement extends PolymerElement {
         background: var(--exmg-paper-sidemenu-hover-background-color, var(--paper-grey-200));
       }
 
+      a[aria-selected] svg{
+        fill: var(--exmg-paper-sidemenu-selected-text-color, var(--primary-color));
+      }
       a[aria-selected] paper-item {
         color: var(--exmg-paper-sidemenu-selected-text-color, var(--primary-color));
       }
@@ -321,9 +331,14 @@ class SidemenuElement extends PolymerElement {
       <paper-listbox attr-for-selected="data-path" selected="{{selected}}" selectable="a">
         <template is="dom-repeat" items="[[menu]]" as="item">
           <template is="dom-if" if="[[!_hasItems(item)]]">
-            <a href="[[_getHref(item.path)]]" data-path\$="[[item.path]]" tabindex="-1" class="menu-item solo">
-              <paper-item data-path\$="[[item.path]]" role="menuitem">
-                <iron-icon icon="[[item.icon]]"></iron-icon>
+            <a href="[[_getHref(item.path)]]" data-path$="[[item.path]]" tabindex="-1" class="menu-item solo">
+              <paper-item data-path$="[[item.path]]" role="menuitem">
+                <template is="dom-if" if="[[item.icon-svg-path]]" restamp>
+                  <svg height="24" viewBox="0 0 24 24" width="24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
+                </template>
+                <template is="dom-if" if="[[!item.icon-svg-path]]" restamp>
+                  <iron-icon icon="[[item.icon]]"></iron-icon>
+                </template>
                 <span class="title">[[item.title]]</span>
               </paper-item>
               <exmg-paper-tooltip position="right">[[item.title]]</exmg-paper-tooltip>
@@ -332,14 +347,20 @@ class SidemenuElement extends PolymerElement {
           <template is="dom-if" if="[[_hasItems(item)]]">
             <div class="menu-group-title">[[item.title]]</div>
             <template is="dom-repeat" items="[[item.items]]" as="subitem">
-              <a href="[[_getHref(subitem.path)]]" data-path\$="[[subitem.path]]" tabindex="-1" class="menu-item">
-                <paper-item data-path\$="[[subitem.path]]" class\$="[[_hasClassBadge(subitem)]]" role="menuitem">
-                  <iron-icon icon="[[subitem.icon]]"></iron-icon>
+              <a href="[[_getHref(subitem.path)]]" data-path$="[[subitem.path]]" tabindex="-1" class="menu-item">
+                <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
+                  <template is="dom-if" if="[[subitem.icon-svg-path]]" restamp>
+                    <svg height="24" viewBox="0 0 24 24" width="24"><path d$="[[subitem.icon-svg-path]]"></path></svg>
+                  </template>
+                  <template is="dom-if" if="[[!subitem.icon-svg-path]]" restamp>
+                    <iron-icon icon="[[subitem.icon]]"></iron-icon>sdsd
+                  </template>
                   <template is="dom-if" if="[[subitem.badgeCount]]">
                     <span class="icon-badge">[[_computeBadgeCount(subitem)]]</span>
                   </template>
                   <span class="title">[[subitem.title]]
-                    <template is="dom-if" if="[[subitem.badgeCount]]"><span class="title-badge">[[subitem.badgeCount]]</span></template></span>
+                    <template is="dom-if" if="[[subitem.badgeCount]]"><span class="title-badge">[[subitem.badgeCount]]</span></template>
+                  </span>
                 </paper-item>
                 <exmg-paper-tooltip position="right">[[subitem.title]]</exmg-paper-tooltip>
               </a>
@@ -355,6 +376,9 @@ class SidemenuElement extends PolymerElement {
       <paper-icon-button icon="exmg-paper-sidemenu-icons:chevron-left" on-tap="_handleCollapse"></paper-icon-button>
     </div>
   `;
+  }
+  _observeCollapsed(collapsed) {
+    this.dispatchEvent(new CustomEvent('collapsed', {bubbles: false, composed: true, detail: collapsed}));
   }
   _observeNarrow(narrow) {
     if (narrow && this.collapsed) {

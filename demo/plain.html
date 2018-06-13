@@ -77,11 +77,14 @@
             <iron-media-query query="(min-width: 500px)" query-matches="{{full}}"></iron-media-query>
 
             <!-- Menu  -->
-            <exmg-paper-sidemenu menu="[[menu]]" selected="rooms/" narrow$="[[!full]]" debug></exmg-paper-sidemenu>
+            <exmg-paper-sidemenu menu="[[menu]]" selected="rooms/" narrow$="[[!full]]" debug on-collapsed="_handleCollapsed"></exmg-paper-sidemenu>
 
             <!-- Load menu from json file  -->
             <iron-ajax url="data/menu.json" last-response="{{menu}}" auto></iron-ajax>
           `;
+        }
+        _handleCollapsed(e) {
+          console.log('_handleCollapsed', e.detail);
         }
       }
       window.customElements.define(XDemo.is, XDemo);
