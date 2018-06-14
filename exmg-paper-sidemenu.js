@@ -195,6 +195,10 @@ class SidemenuElement extends PolymerElement {
         @apply --exmg-paper-sidemenu-item;
       }
 
+      a svg{
+        fill: var(--exmg-paper-sidemenu-item-text-color, rgba(0, 0, 0, var(--dark-secondary-opacity)));
+      }
+
       paper-item .title {
         @apply --layout-flex;
         width: 100%;
@@ -353,7 +357,7 @@ class SidemenuElement extends PolymerElement {
                     <svg height="24" viewBox="0 0 24 24" width="24"><path d$="[[subitem.icon-svg-path]]"></path></svg>
                   </template>
                   <template is="dom-if" if="[[!subitem.icon-svg-path]]" restamp>
-                    <iron-icon icon="[[subitem.icon]]"></iron-icon>sdsd
+                    <iron-icon icon="[[subitem.icon]]"></iron-icon>
                   </template>
                   <template is="dom-if" if="[[subitem.badgeCount]]">
                     <span class="icon-badge">[[_computeBadgeCount(subitem)]]</span>
