@@ -8,11 +8,6 @@ import '@polymer/iron-icon/iron-icon.js';
 import './exmg-paper-sidemenu-icons.js';
 
 /**
-* @namespace Exmg
-*/
-window.Exmg = window.Exmg || {};
-
-/**
  * The `exmg-paper-sidemenu` displays a vertical sidemenu that can be collapsed.
  *
  *  ### Menu data model
@@ -80,7 +75,7 @@ window.Exmg = window.Exmg || {};
  *  @element exmg-paper-sidemenu
  *  @demo demo/index.html
  */
-class SidemenuElement extends PolymerElement {
+export class SidemenuElement extends PolymerElement {
   static get is() {
     return 'exmg-paper-sidemenu';
   }
@@ -181,6 +176,7 @@ class SidemenuElement extends PolymerElement {
 
       paper-listbox {
         padding: 0;
+        background: var( --exmg-paper-sidemenu-background);
       }
 
       paper-item {
@@ -407,5 +403,3 @@ class SidemenuElement extends PolymerElement {
 }
 
 window.customElements.define(SidemenuElement.is, SidemenuElement);
-
-Exmg.SidemenuElement = SidemenuElement;

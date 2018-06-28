@@ -7,11 +7,6 @@ import '@polymer/iron-icon/iron-icon.js';
 import './exmg-paper-sidemenu-icons.js';
 
 /**
-* @namespace Exmg
-*/
-window.Exmg = window.Exmg || {};
-
-/**
 * `exmg-paper-sidemenu-header` default sidemenu header including a home and settings link.
 *
 * ### Menu data model
@@ -48,7 +43,7 @@ window.Exmg = window.Exmg || {};
 * @group Exmg Paper Elements
 * @element exmg-paper-sidemenu-header
 */
-class CmsSidemenuHeader extends PolymerElement {
+export class CmsSidemenuHeader extends PolymerElement {
   static get is() {
     return 'exmg-paper-sidemenu-header';
   }
@@ -265,5 +260,3 @@ class CmsSidemenuHeader extends PolymerElement {
 }
 
 window.customElements.define(CmsSidemenuHeader.is, CmsSidemenuHeader);
-
-Exmg.CmsSidemenuHeader = CmsSidemenuHeader;
