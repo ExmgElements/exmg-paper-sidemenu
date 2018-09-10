@@ -16,11 +16,12 @@ export const menu = [
         path: 'sport/{{sportId}}/teams/',
         icon: 'dev-icons:bubble-chart',
         title: 'Teams'
-      },{
+      },
+      {
         path: 'rewardmodels/',
         icon: 'dev-icons:card-giftcard',
         title: 'Reward Models'
       }
     ]
   }
-]
+];
