@@ -4,41 +4,60 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>exmg-cms-section-admins test</title>
-
-    <script src="@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="web-component-tester/browser.js"></script>
-    <script src="@polymer/test-fixture/test-fixture-mocha.js"></script>
-
-    <script type="module" src="@polymer/test-fixture/test-fixture.js"></script>
+    <title>test-el test</title>
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../node_modules/wct-browser-legacy/browser.js"></script>
 
     <script type="module" src="../exmg-paper-sidemenu.js"></script>
   </head>
   <body>
 
-    <test-fixture id="basic">
+    <test-fixture id="BasicTestFixture">
       <template>
         <exmg-paper-sidemenu menu='[]'></exmg-paper-sidemenu>
       </template>
     </test-fixture>
 
+    <test-fixture id="BasicTestFixtureMenu">
+      <template>
+        <exmg-paper-sidemenu></exmg-paper-sidemenu>
+      </template>
+    </test-fixture>
+
     <script type="module">
-import '@polymer/test-fixture/test-fixture.js';
-import '../exmg-paper-sidemenu.js';
+        import { menu } from './menu-example.js';
+        var sideMenu;
+        suite('exmg-paper-sidemenu', () => {
 
-suite('exmg-paper-sidemenu', function() {
-  let el;
+          setup(() => {
+            sideMenu = fixture('BasicTestFixtureMenu');
+          });
 
-  setup(function() {
-    el = fixture('basic');
-  });
+          test('instantiating the element with default properties', () => {
+            const element = fixture('BasicTestFixture');
+            assert.equal(element.menu.length, 0);
+          });
+  
+          test('check if menu items rendered matches the amount of items in menu config file', (done) => {
+            sideMenu.menu = menu;
+            flush(() => {
+              var menuItems = sideMenu.shadowRoot.querySelectorAll('paper-item');
+              assert.equal(4, menuItems.length);
+              done();
+            });
+          });
 
-  test('instantiating the element with default properties works', function() {
-    assert.equal(el.menu.length, 0);
-  });
+          test('check if selected state reflects to dom', (done) => {
+            sideMenu.menu = menu;
+            sideMenu.selected = 'rewardmodels/';
+            flush(() => {
+              var selectedItems = sideMenu.shadowRoot.querySelectorAll('a[aria-selected]');
+              assert.equal(1, selectedItems.length);
+              done();
+            });
+          });
 
-});
-</script>
-
+        });
+      </script>
   </body>
 </html>

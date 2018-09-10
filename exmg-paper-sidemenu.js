@@ -333,10 +333,10 @@ export class SidemenuElement extends PolymerElement {
           <template is="dom-if" if="[[!_hasItems(item)]]">
             <a href="[[_getHref(item.path)]]" data-path$="[[item.path]]" tabindex="-1" class="menu-item solo">
               <paper-item data-path$="[[item.path]]" role="menuitem">
-                <template is="dom-if" if="[[item.icon-svg-path]]" restamp>
+                <template is="dom-if" if="[[item.iconSvgPath]]" restamp>
                   <svg height="24" viewBox="0 0 24 24" width="24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
                 </template>
-                <template is="dom-if" if="[[!item.icon-svg-path]]" restamp>
+                <template is="dom-if" if="[[!item.iconSvgPath]]" restamp>
                   <iron-icon icon="[[item.icon]]"></iron-icon>
                 </template>
                 <span class="title">[[item.title]]</span>
@@ -349,10 +349,10 @@ export class SidemenuElement extends PolymerElement {
             <template is="dom-repeat" items="[[item.items]]" as="subitem">
               <a href="[[_getHref(subitem.path)]]" data-path$="[[subitem.path]]" tabindex="-1" class="menu-item">
                 <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
-                  <template is="dom-if" if="[[subitem.icon-svg-path]]" restamp>
-                    <svg height="24" viewBox="0 0 24 24" width="24"><path d$="[[subitem.icon-svg-path]]"></path></svg>
+                  <template is="dom-if" if="[[subitem.iconSvgPath]]" restamp>
+                    <svg height="24" viewBox="0 0 24 24" width="24"><path d$="[[subitem.iconSvgPath]]"></path></svg>
                   </template>
-                  <template is="dom-if" if="[[!subitem.icon-svg-path]]" restamp>
+                  <template is="dom-if" if="[[!subitem.iconSvgPath]]" restamp>
                     <iron-icon icon="[[subitem.icon]]"></iron-icon>
                   </template>
                   <template is="dom-if" if="[[subitem.badgeCount]]">
