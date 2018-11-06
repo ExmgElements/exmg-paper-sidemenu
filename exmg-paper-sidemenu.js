@@ -133,6 +133,7 @@ export class SidemenuElement extends PolymerElement {
         background-color: var(--exmg-paper-sidemenu-background, white);
         box-shadow: 2px 0 2px 0 rgba(0, 0, 0, .1);
         transition: all 0.3s ease;
+        overflow: hidden;
         @apply --layout-flex;
         @apply --layout-vertical;
         @apply --exmg-paper-sidemenu;

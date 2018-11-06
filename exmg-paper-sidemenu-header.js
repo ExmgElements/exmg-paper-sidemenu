@@ -212,6 +212,7 @@ export class CmsSidemenuHeader extends PolymerElement {
         height: initial;
         border-right: none;
       }
+
       :host([collapsed]) paper-item .title {
         opacity: 0;
         width: 0;
