@@ -44,7 +44,9 @@ import './exmg-paper-sidemenu-icons.js';
 * @element exmg-paper-sidemenu-header
 */
 export class CmsSidemenuHeader extends PolymerElement {
-  static get is() {
+  debug!: boolean;
+
+  static get is(): string {
     return 'exmg-paper-sidemenu-header';
   }
   static get properties() {
@@ -119,7 +121,7 @@ export class CmsSidemenuHeader extends PolymerElement {
       },
     };
   }
-  static get template() {
+  static get template(): HTMLTemplateElement {
     return html`
     <style>
       :host {
@@ -255,7 +257,7 @@ export class CmsSidemenuHeader extends PolymerElement {
   /*
   * Disable links in debug mode
   */
-  _getHref(path) {
+  _getHref(path: string): string {
     return this.debug ? '#' : path;
   }
 }

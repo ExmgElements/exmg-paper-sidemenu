@@ -7,6 +7,11 @@ import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/iron-icon/iron-icon.js';
 import './exmg-paper-sidemenu-icons.js';
 
+interface Item {
+  items?: Item[];
+  badgeCount: number;
+}
+
 /**
  * The `exmg-paper-sidemenu` displays a vertical sidemenu that can be collapsed.
  *
@@ -76,7 +81,10 @@ import './exmg-paper-sidemenu-icons.js';
  *  @demo demo/index.html
  */
 export class SidemenuElement extends PolymerElement {
-  static get is() {
+  collapsed!: boolean;
+  debug!: boolean;
+
+  static get is(): string {
     return 'exmg-paper-sidemenu';
   }
   static get properties() {
@@ -120,12 +128,12 @@ export class SidemenuElement extends PolymerElement {
       },
     };
   }
-  static get observers() {
+  static get observers(): string[] {
     return [
       '_observeNarrow(narrow)',
     ];
   }
-  static get template() {
+  static get template(): HTMLTemplateElement {
     return html`
     <style>
       :host {
@@ -378,27 +386,27 @@ export class SidemenuElement extends PolymerElement {
     </div>
   `;
   }
-  _observeCollapsed(collapsed) {
+  _observeCollapsed(collapsed: boolean): void {
     this.dispatchEvent(new CustomEvent('collapsed', {bubbles: false, composed: true, detail: collapsed}));
   }
-  _observeNarrow(narrow) {
+  _observeNarrow(narrow: boolean): void {
     if (narrow && this.collapsed) {
       this.set('collapsed', false);
     }
   }
-  _getHref(path) {
+  _getHref(path: string): string {
     return this.debug ? '#' : path;
   }
-  _hasItems(item) {
+  _hasItems(item: Item) {
     return item.items;
   }
-  _hasClassBadge(item) {
+  _hasClassBadge(item: Item): string {
     return item.badgeCount ? 'badge' : '';
   }
-  _computeBadgeCount(item) {
+  _computeBadgeCount(item: Item): number | '...' {
     return item.badgeCount > 99 ? '...' : item.badgeCount;
   }
-  _handleCollapse() {
+  _handleCollapse():void {
     this.set('collapsed', !this.collapsed);
   }
 }
