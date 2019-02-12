@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "@polymer/iron-ajax": "^3.0.0-pre.25",
-    "@polymer/iron-component-page": "^3.0.0-pre.21",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "@polymer/iron-input": "^3.0.0-pre.25",
     "@polymer/iron-media-query": "^3.0.0-pre.25",
@@ -38,6 +37,7 @@
     "eslint": "^4.11.0",
     "eslint-config-exmg": "latest",
     "eslint-plugin-html": "^3.0.0",
+    "typedoc": "^0.14.2",
     "gulp": "^4.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-replace": "^1.0.0",
@@ -45,6 +45,7 @@
     "wct-browser-legacy": "^1.0.0"
   },
   "scripts": {
+    "gen-docs": "typedoc --excludeNotExported --excludeExternals --excludePrivate --excludeProtected --ignoreCompilerErrors --exclude '{**/*test*,**/node_modules/**,**/test/**}' --out docs/ *.ts",
     "build": "tsc",
     "prepare": "npm run build",
     "start": "gulp serve",
