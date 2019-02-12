@@ -65,6 +65,7 @@ interface Item {
  *  `--exmg-paper-sidemenu-item-title` | Menu item title mixin | `{}`
  *  `--exmg-paper-sidemenu-menu-body` | Menu body mixin | `{}`
  *  `--exmg-paper-sidemenu-menu-footer-background-color` | Footer background color | `#F9FAF9`
+ *  `--exmg-paper-sidemenu-menu-border-color` | Border color of menu | '#DDD'
  *  `--exmg-paper-sidemenu-menu-footer` | Menu footer mixin | `{}`
  *  `--exmg-paper-sidemenu-icon-color` | Sidemenu icon color | `54% black`
  *  `--exmg-paper-sidemenu-badge-background-color` | Item badge background color | `--secondary-text-color`
@@ -100,7 +101,8 @@ export class SidemenuElement extends PolymerElement {
       * For selection you can use the path value
       */
       selected: {
-        notify: true,
+        reflectToAttribute: true,
+        observer: '_observeSelected',
         type: String,
       },
       /*
@@ -163,7 +165,7 @@ export class SidemenuElement extends PolymerElement {
 
       hr {
         border: none;
-        background: #ddd;
+        background: var(--exmg-paper-sidemenu-menu-border-color, #ddd);
         margin: 8px 0 0;
         height: 0;
         @apply --exmg-paper-sidemenu-group-hr;
@@ -240,7 +242,7 @@ export class SidemenuElement extends PolymerElement {
       }
 
       .menu-footer {
-        border-top: 1px solid #ddd;
+        border-top: 1px solid var(--exmg-paper-sidemenu-menu-border-color, #ddd);
         background: var(--exmg-paper-sidemenu-menu-footer-background-color, #F9FAF9);
         min-height: 48px;
         @apply --layout;
@@ -321,10 +323,10 @@ export class SidemenuElement extends PolymerElement {
         background: var(--exmg-paper-sidemenu-hover-background-color, var(--paper-grey-200));
       }
 
-      a[aria-selected] svg{
+      a[aria-selected="true"] svg{
         fill: var(--exmg-paper-sidemenu-selected-text-color, var(--primary-color));
       }
-      a[aria-selected] paper-item {
+      a[aria-selected="true"] paper-item {
         color: var(--exmg-paper-sidemenu-selected-text-color, var(--primary-color));
       }
 
@@ -385,6 +387,9 @@ export class SidemenuElement extends PolymerElement {
       <paper-icon-button icon="exmg-paper-sidemenu-icons:chevron-left" on-tap="_handleCollapse"></paper-icon-button>
     </div>
   `;
+  }
+  _observeSelected(selected: string) {
+    this.dispatchEvent(new CustomEvent('selected-change', {bubbles: false, composed: true, detail: selected}));
   }
   _observeCollapsed(collapsed: boolean): void {
     this.dispatchEvent(new CustomEvent('collapsed', {bubbles: false, composed: true, detail: collapsed}));

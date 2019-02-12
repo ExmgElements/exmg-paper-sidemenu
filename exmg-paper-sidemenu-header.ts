@@ -63,6 +63,7 @@ export class CmsSidemenuHeader extends PolymerElement {
       */
       selected: {
         notify: true,
+        observer: '_observeSelected',
         type: String,
       },
       /*
@@ -167,7 +168,7 @@ export class CmsSidemenuHeader extends PolymerElement {
         box-sizing: border-box;
         background: var(--exmg-paper-sidemenu-menu-header-background-color, #F9FAF9);
         min-height: 56px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid var(--exmg-paper-sidemenu-menu-border-color, #ddd);
         @apply --exmg-paper-sidemenu-header-menu;
       }
 
@@ -179,7 +180,7 @@ export class CmsSidemenuHeader extends PolymerElement {
       }
 
       .menu-header .menu-item:first-child {
-        border-right: 1px solid var(--divider-color);
+        border-right: 1px solid var(--exmg-paper-sidemenu-menu-border-color, #ddd);
         @apply --layout-flex;
         @apply --exmg-paper-sidemenu-header-dashboard;
       }
@@ -225,8 +226,8 @@ export class CmsSidemenuHeader extends PolymerElement {
         background: var(--exmg-paper-sidemenu-hover-background-color, var(--paper-grey-200));
       }
 
-      a[aria-selected] paper-item iron-icon,
-      a[aria-selected] paper-item {
+      a[aria-selected="true"] paper-item iron-icon,
+      a[aria-selected="true"] paper-item {
         color: var(--exmg-paper-sidemenu-selected-text-color, var(--primary-color));
       }
 
@@ -259,6 +260,10 @@ export class CmsSidemenuHeader extends PolymerElement {
   */
   _getHref(path: string): string {
     return this.debug ? '#' : path;
+  }
+
+  _observeSelected(selected: string) {
+    this.dispatchEvent(new CustomEvent('selected-change', {bubbles: false, composed: true, detail: selected}));
   }
 }
 
