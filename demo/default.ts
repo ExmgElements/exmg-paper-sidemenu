@@ -21,29 +21,13 @@ export class XDemo extends LitElement {
       height: 100%;
       overflow: auto;
       background-color: white;
-      color: black;
-
       --secondary-color: #57cb08;
-      --paper-tabs-selection-bar-color: white;
-      --exmg-paper-sidemenu-background: #19212B;
-      --exmg-paper-sidemenu-item-text-color: #BABDC0;
-      --exmg-paper-sidemenu-hover-background-color: #394150;
-      --exmg-paper-sidemenu-selected-text-color: var(--secondary-color);
-      --exmg-paper-sidemenu-group-text-color: #FEFFFE;
-      --exmg-paper-sidemenu-menu-header-background-color: #262F3C;
-      --exmg-paper-sidemenu-menu-footer-background-color: #262F3C;
-      --exmg-paper-sidemenu-menu-border-color: #3F4853;
-      --exmg-paper-sidemenu-icon-color: #BABDC0;
-      --exmg-paper-sidemenu-header-item-icon: {
-        fill: #BABDC0;
-      }
     }
-    a {
-      color: black;
-    }
+
     exmg-paper-sidemenu {
       width: 256px;
     }
+
     exmg-paper-sidemenu[collapsed] {
       width: 64px;
     }

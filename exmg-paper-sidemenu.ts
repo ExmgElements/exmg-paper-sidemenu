@@ -3,9 +3,9 @@ import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import '@polymer/paper-listbox/paper-listbox.js';
 import '@polymer/paper-item/paper-item.js';
 import '@exmg/exmg-paper-tooltip/exmg-paper-tooltip.js';
-import '@polymer/paper-icon-button/paper-icon-button.js';
-import '@polymer/iron-icon/iron-icon.js';
-import './exmg-paper-sidemenu-icons.js';
+
+export const chevronLeftIcon = html`<svg height="24" viewBox="0 0 24 24" width="24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>`;
+export const settingsIcon = html`<svg height="24" viewBox="0 0 24 24" width="24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"></path></svg>`;
 
 interface Item {
   items?: Item[];
@@ -20,7 +20,7 @@ interface Item {
  *  ```js
  *  {
  *    "path": "user/", // Path for href and selection
- *    "icon": "dev-icons:people", // Icon that needs to be pre-loaded
+ *    "iconPath": "", // Svg path
  *    "title": "Users" // Copy to display
  *  }
  *  ```
@@ -32,17 +32,17 @@ interface Item {
  *    "items": [
  *      {
  *        "path": "user/",
- *        "icon": "dev-icons:people",
+ *        "iconPath": "...",
  *        "title": "Users"
  *      },
  *      {
  *        "path": "redeem/",
- *        "icon": "dev-icons:attach-money",
+ *        "iconPath": "...",
  *        "title": "Redeem Requests"
  *      },
  *      {
  *        "path": "reporteduser/",
- *        "icon": "dev-icons:feedback",
+ *        "iconPath": "...",
  *        "title": "Reported Users"
  *      }
  *    ]
@@ -221,8 +221,7 @@ export class SidemenuElement extends PolymerElement {
         max-width: 0px;
       }
 
-      paper-item svg,
-      paper-item iron-icon {
+      paper-item svg {
         padding-right: 12px;
         width: 24px;
         max-width: 24px;
@@ -251,15 +250,20 @@ export class SidemenuElement extends PolymerElement {
         @apply --exmg-paper-sidemenu-menu-footer;
       }
 
-      .menu-footer paper-icon-button {
+      .menu-footer button {
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+      .menu-footer svg {
         transition: transform .3s ease;
         transform: rotate(0deg);
         @apply --layout-end-justified;
       }
 
-      .menu-footer paper-icon-button {
+      .menu-footer svg {
         margin: 0 4px;
-        color: var(--exmg-paper-sidemenu-icon-color, rgba(0, 0, 0, var(--dark-secondary-opacity)));
+        fill: var(--exmg-paper-sidemenu-icon-color, rgba(0, 0, 0, var(--dark-secondary-opacity)));
       }
 
       :host([narrow]) .menu-footer {
@@ -273,7 +277,6 @@ export class SidemenuElement extends PolymerElement {
       }
 
       :host([collapsed]) paper-item svg { padding: 0; }
-      :host([collapsed]) paper-item iron-icon { padding: 0; }
       :host([collapsed]) .menu-group {
         padding: 12px 0;
       }
@@ -291,7 +294,7 @@ export class SidemenuElement extends PolymerElement {
         display: block;
       }
 
-      :host([collapsed]) .menu-footer paper-icon-button {
+      :host([collapsed]) .menu-footer svg {
         transform: rotate(180deg);
       }
 
@@ -344,12 +347,7 @@ export class SidemenuElement extends PolymerElement {
           <template is="dom-if" if="[[!_hasItems(item)]]">
             <a href="[[_getHref(item.path)]]" data-path$="[[item.path]]" tabindex="-1" class="menu-item solo">
               <paper-item data-path$="[[item.path]]" role="menuitem">
-                <template is="dom-if" if="[[item.iconSvgPath]]" restamp>
-                  <svg height="24" viewBox="0 0 24 24" width="24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
-                </template>
-                <template is="dom-if" if="[[!item.iconSvgPath]]" restamp>
-                  <iron-icon icon="[[item.icon]]"></iron-icon>
-                </template>
+                <svg height="24" viewBox="0 0 24 24" width="24"><path d$="[[item.iconPath]]"></path></svg>
                 <span class="title">[[item.title]]</span>
               </paper-item>
               <exmg-paper-tooltip position="right">[[item.title]]</exmg-paper-tooltip>
@@ -360,12 +358,7 @@ export class SidemenuElement extends PolymerElement {
             <template is="dom-repeat" items="[[item.items]]" as="subitem">
               <a href="[[_getHref(subitem.path)]]" data-path$="[[subitem.path]]" tabindex="-1" class="menu-item">
                 <paper-item data-path$="[[subitem.path]]" class$="[[_hasClassBadge(subitem)]]" role="menuitem">
-                  <template is="dom-if" if="[[subitem.iconSvgPath]]" restamp>
-                    <svg height="24" viewBox="0 0 24 24" width="24"><path d$="[[subitem.iconSvgPath]]"></path></svg>
-                  </template>
-                  <template is="dom-if" if="[[!subitem.iconSvgPath]]" restamp>
-                    <iron-icon icon="[[subitem.icon]]"></iron-icon>
-                  </template>
+                  <svg height="24" viewBox="0 0 24 24" width="24"><path d$="[[subitem.iconPath]]"></path></svg>
                   <template is="dom-if" if="[[subitem.badgeCount]]">
                     <span class="icon-badge">[[_computeBadgeCount(subitem)]]</span>
                   </template>
@@ -384,7 +377,7 @@ export class SidemenuElement extends PolymerElement {
 
     <!-- Sidemenu Footer -->
     <div class="menu-footer">
-      <paper-icon-button icon="exmg-paper-sidemenu-icons:chevron-left" on-tap="_handleCollapse"></paper-icon-button>
+      <button on-click="_handleCollapse">${chevronLeftIcon}</button>
     </div>
   `;
   }

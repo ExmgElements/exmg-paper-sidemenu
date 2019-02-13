@@ -7,17 +7,6 @@
 
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
-    <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
-    <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script>
-    <script type="module" src="../node_modules/@polymer/iron-ajax/iron-ajax.js"></script>
-    <script type="module" src="../node_modules/@polymer/paper-styles/typography.js"></script>
-    <script type="module" src="../node_modules/@polymer/paper-styles/color.js"></script>
-    <script type="module" src="../node_modules/@polymer/iron-media-query/iron-media-query.js"></script>
-
-    <script type="module" src="./dev-icons.js"></script>
-    <script type="module" src="../exmg-paper-sidemenu.js"></script>
-    <script type="module" src="../exmg-paper-sidemenu-header.js"></script>
-
     <custom-style>
       <style is="custom-style">
         body {
@@ -39,61 +28,7 @@
     </custom-style>
   </head>
   <body>
-    <script type="module">
-      import {PolymerElement, html} from '../node_modules/@polymer/polymer/polymer-element.js?module';
-      import '../exmg-paper-sidemenu-header.js';
-
-      class XDemo extends PolymerElement {
-        static get is() {
-          return 'x-demo';
-        }
-        static get properties() {
-          return {
-            selected: {
-              type: String,
-              value: 'rooms/',
-            },
-            menu: {
-              type: Array,
-            },
-          };
-        }
-        static get template() {
-          return html`<style>
-            :host {
-              display: inline-block;
-              height: 100%;
-              overflow: auto;
-              background-color: white;
-              --secondary-color: #57cb08;
-            }
-
-            exmg-paper-sidemenu {
-              width: 256px;
-            }
-
-            exmg-paper-sidemenu[collapsed] {
-              width: 64px;
-            }
-            exmg-paper-sidemenu[collapsed] paper-item iron-icon {
-              padding: 0;
-            }
-          </style>
-
-          <iron-media-query query="(min-width: 500px)" query-matches="{{full}}"></iron-media-query>
-
-          <!-- Menu  -->
-          <exmg-paper-sidemenu menu="[[menu]]" selected="{{selected}}" collapsed="{{collapsed}}" narrow$="[[!full]]" debug>
-            <exmg-paper-sidemenu-header slot="header" selected="{{selected}}" collapsed="[[collapsed]]" debug></exmg-paper-sidemenu-header>
-          </exmg-paper-sidemenu>
-
-          <!-- Load menu from json file  -->
-          <iron-ajax url="data/menu.json" last-response="{{menu}}" auto></iron-ajax>
-          `;
-        }
-      }
-      window.customElements.define(XDemo.is, XDemo);
-    </script>
+    <script type="module" src="./default.js"></script>
     <x-demo></x-demo>
   </body>
 </html>

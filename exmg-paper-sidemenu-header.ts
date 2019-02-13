@@ -3,8 +3,10 @@ import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import '@polymer/paper-listbox/paper-listbox.js';
 import '@polymer/paper-item/paper-item.js';
 import '@exmg/exmg-paper-tooltip/exmg-paper-tooltip.js';
-import '@polymer/iron-icon/iron-icon.js';
-import './exmg-paper-sidemenu-icons.js';
+
+const dashboardIcon = html`<svg height="24" viewBox="0 0 24 24" width="24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"></path></svg>`;
+const settingsIcon = html`<svg height="24" viewBox="0 0 24 24" width="24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"></path></svg>`;
+
 
 /**
 * `exmg-paper-sidemenu-header` default sidemenu header including a home and settings link.
@@ -74,14 +76,6 @@ export class CmsSidemenuHeader extends PolymerElement {
         value: 'Dashboard',
       },
       /*
-      * Home icon. Default will use the dashboard icon from the
-      * exmg-paper-sidemenu-icons set.
-      */
-      homeIcon: {
-        type: String,
-        value: 'exmg-paper-sidemenu-icons:dashboard',
-      },
-      /*
       * Url to home/landings page
       */
       homeUrl: {
@@ -102,23 +96,13 @@ export class CmsSidemenuHeader extends PolymerElement {
         type: String,
         value: 'settings/',
       },
-      /*
-      * Settings icon. Default will use the settins icon from the
-      * exmg-paper-sidemenu-icons set.
-      */
-      settingsIcon: {
-        type: String,
-        value: 'exmg-paper-sidemenu-icons:settings',
-      },
 
       /*
       * Property that determines the element display style collapsed of expanded
       */
       collapsed: {
         type: Boolean,
-        notify: true,
         reflectToAttribute: true,
-        value: false,
       },
     };
   }
@@ -149,12 +133,12 @@ export class CmsSidemenuHeader extends PolymerElement {
         padding: 0 8px;
       }
 
-      paper-item iron-icon {
+      paper-item svg {
         padding-right: 12px;
         width: 24px;
         max-width: 24px;
         height: 20px;
-        @apply --exmg-paper-sidemenu-header-item-icon;
+        fill: var(--exmg-paper-sidemenu-group-text-color, rgba(0, 0, 0, var(--dark-secondary-opacity)));
       }
 
       exmg-paper-tooltip {
@@ -185,7 +169,7 @@ export class CmsSidemenuHeader extends PolymerElement {
         @apply --exmg-paper-sidemenu-header-dashboard;
       }
 
-      .menu-header .menu-item:nth-child(2) iron-icon {
+      .menu-header .menu-item:nth-child(2) svg {
         padding-right: 0;
       }
 
@@ -198,7 +182,7 @@ export class CmsSidemenuHeader extends PolymerElement {
         display: block;
       }
 
-      :host([collapsed]) .menu-header .menu-item:nth-child(1) iron-icon {
+      :host([collapsed]) .menu-header .menu-item:nth-child(1) svg {
         padding-right: 0;
       }
 
@@ -226,7 +210,10 @@ export class CmsSidemenuHeader extends PolymerElement {
         background: var(--exmg-paper-sidemenu-hover-background-color, var(--paper-grey-200));
       }
 
-      a[aria-selected="true"] paper-item iron-icon,
+      a[aria-selected="true"] paper-item svg {
+        fill: var(--exmg-paper-sidemenu-selected-text-color, var(--primary-color));
+      }
+
       a[aria-selected="true"] paper-item {
         color: var(--exmg-paper-sidemenu-selected-text-color, var(--primary-color));
       }
@@ -241,14 +228,14 @@ export class CmsSidemenuHeader extends PolymerElement {
     <paper-listbox class="menu-header" slot="header" attr-for-selected="data-path" selected="{{selected}}" selectable="a">
       <a href="[[_getHref(homeUrl)]]" data-path="[[homeUrl]]" tabindex="-1" class="menu-item">
         <paper-item role="menuitem">
-          <iron-icon icon="[[homeIcon]]"></iron-icon>
+          ${dashboardIcon}
           <span class="title">[[homeLabel]]</span>
         </paper-item>
-        <exmg-paper-tooltip position="right">[[homeLabel]]</exmg-paper-tooltip>
+        <exmg-paper-tooltip position="right">[[homeLabel]]- [[collapsed]]</exmg-paper-tooltip>
       </a>
       <a href="[[_getHref(settingsUrl)]]" data-path="[[settingsUrl]]" tabindex="-1" class="menu-item">
         <paper-item role="menuitem" aria-label$="[[settingsLabel]]">
-          <iron-icon icon="[[settingsIcon]]"></iron-icon>
+          ${settingsIcon}
         </paper-item>
         <exmg-paper-tooltip position="right">[[settingsLabel]]</exmg-paper-tooltip>
       </a>

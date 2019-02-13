@@ -23,9 +23,6 @@ export class XDemo extends LitElement {
     exmg-paper-sidemenu[collapsed] {
       width: 64px;
     }
-    exmg-paper-sidemenu[collapsed] paper-item iron-icon {
-      padding: 0;
-    }
   `;
 
   render() {
