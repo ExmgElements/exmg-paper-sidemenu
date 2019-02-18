@@ -11,6 +11,11 @@
     "polymer",
     "sidemenu"
   ],
+  "files": [
+    "!gulpfile.js",
+    "**/*.js",
+    "**/*.d.ts"
+  ],
   "main": "exmg-paper-sidemenu.js",
   "repository": {
     "type": "git",
