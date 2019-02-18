@@ -33,7 +33,7 @@ export class XDemo extends LitElement {
       --exmg-paper-sidemenu-menu-header-background-color: #262F3C;
       --exmg-paper-sidemenu-menu-footer-background-color: #262F3C;
       --exmg-paper-sidemenu-menu-border-color: #3F4853;
-      --exmg-paper-sidemenu-icon-color: #BABDC0;
+      --exmg-paper-sidemenu-icon-color: white;
       --exmg-paper-sidemenu-header-item-icon: {
         fill: #BABDC0;
       }

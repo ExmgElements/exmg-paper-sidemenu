@@ -203,7 +203,7 @@ export class SidemenuElement extends PolymerElement {
       }
 
       a svg{
-        fill: var(--exmg-paper-sidemenu-item-text-color, rgba(0, 0, 0, var(--dark-secondary-opacity)));
+        fill: var(--exmg-paper-sidemenu-icon-color, rgba(0, 0, 0, var(--dark-secondary-opacity)));
       }
 
       paper-item .title {
